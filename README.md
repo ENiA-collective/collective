@@ -1,6 +1,6 @@
-# Project Name
+# Collective
 
-> Pithy project description
+> Collective is a no-buy group application that provides an interface for users to look up clothes they no longer need for free exchange. It will help users meet needs, promote mutual aid, help people connect with their community, and reduce environmental waste caused by overproduction. 
 
 ## Team
 
