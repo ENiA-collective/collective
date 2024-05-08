@@ -57,12 +57,31 @@ const SignUpPage = () => {
           value={formData.password}
         />
 
+<label htmlFor="confirmPassword">Confirm Password</label>
+        <input
+          autoComplete="off"
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          onChange={handleChange}
+          value={formData.confirmPassword}
+        />
+
+<label htmlFor="profilePicture">Profile Picture</label>
+        <input
+          type="file"
+          id="profilePicture"
+          name="profilePicture"
+          accept="image/*"
+          onChange={handleChange}
+        />
+
         {/* In reality, we'd want a LOT more validation on signup, so add more things if you have time
             <label htmlFor="password-confirm">Password Confirm</label>
             <input autoComplete="off" type="password" id="password-confirm" name="passwordConfirm" />
         */}
 
-        <button>Sign Up Now!</button>
+        <button>Submit</button>
       </form>
       {errorText && <p>{errorText}</p>}
       <p>Already have an account with us? <Link to="/login">Log in!</Link></p>
