@@ -3,7 +3,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { logUserIn } from "../adapters/auth-adapter";
 import CurrentUserContext from "../contexts/current-user-context";
 
-const Login = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [errorText, setErrorText] = useState('');
@@ -24,18 +24,18 @@ const Login = () => {
     <>
       <h1>Login</h1>
       <form onSubmit={handleSubmit} aria-labelledby="login-heading">
-        <h2 id="login-heading">Log back in!</h2>
+        <h2 id="login-heading">Login</h2>
         <label htmlFor="username">Username</label>
         <input type="text" autoComplete="username" id="username" name="username" />
 
         <label htmlFor="password">Password</label>
         <input type="password" autoComplete="current-password" id="password" name="password" />
 
-        <button>Log in!</button>
+        <button>Login</button>
       </form>
       {errorText && <p>{errorText}</p>}
     </>
   );
 };
 
-export default Login;
+export default LoginPage;
