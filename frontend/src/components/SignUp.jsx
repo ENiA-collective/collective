@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SignUpForm = () => {
+const SignUp = () => {
     const [username, setUsername] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [password, setPassword] = useState('');
@@ -77,11 +77,12 @@ return (
             </div>
                 <button type="submit">Submit</button>
         </form>
-        {error && <p style={{color : 'red'}}>{error}</p>}
+        <div className="login-link">
         <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
     </div>
 );
 
 };
 
-export default SignUpForm;
+export default SignUp;
