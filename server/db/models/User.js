@@ -19,6 +19,17 @@ class User {
   isValidPassword = async (password) => (
     authUtils.isValidPassword(password, this.#passwordHash)
   );
+  
+  static async create(username, password) {
+    // hash the plain-text password using bcrypt before storing it in the database
+    const passwordHash = await authUtils.hashPassword(password);
+
+    const query = `INSERT INTO users (username, password_hash)
+      VALUES (?, ?) RETURNING *`;
+    const { rows } = await knex.raw(query, [username, passwordHash]);
+    const user = rows[0];
+    return new User(user);
+  }
 
   static async list() {
     const query = `SELECT * FROM users`;
@@ -39,19 +50,7 @@ class User {
     const { rows } = await knex.raw(query, [username]);
     const user = rows[0];
     return user ? new User(user) : null;
-  }
-
-  static async create(username, password) {
-    // hash the plain-text password using bcrypt before storing it in the database
-    const passwordHash = await authUtils.hashPassword(password);
-
-    const query = `INSERT INTO users (username, password_hash)
-      VALUES (?, ?) RETURNING *`;
-    const { rows } = await knex.raw(query, [username, passwordHash]);
-    const user = rows[0];
-    return new User(user);
-  }
-
+  };
   // this is an instance method that we can use to update
   static async update(id, username) { // dynamic queries are easier if you add more properties
     const query = `

@@ -17,7 +17,7 @@ exports.seed = async (knex) => {
     { username: 'worf123', display_name: 'Worf', password_hash: 'password123', pfp_src: 'http://example.com/worf.jpg', is_admin: false },
     { username: 'janeway456', display_name: 'Kathryn', password_hash: 'password456', pfp_src: 'http://example.com/Kathryn.jpg', is_admin: true }
   ]).returning('id');
-
+//we are gonna have to change the hash
   // Extract IDs from the insert results
   const userIds = userInserts.map(row => row.id);
 
