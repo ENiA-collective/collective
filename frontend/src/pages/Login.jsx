@@ -24,6 +24,9 @@ const LoginPage = () => {
     <>
       <h1>Login</h1>
       <form onSubmit={handleSubmit} aria-labelledby="login-heading">
+      <div>
+        <img src="/blank-profile-picture.png" alt="Profile Picture" style={{ width: "100px", height: "100px" }} />
+      </div>
         <h2 id="login-heading">Login</h2>
         <label htmlFor="username">Username</label>
         <input type="text" autoComplete="username" id="username" name="username" />
@@ -34,6 +37,7 @@ const LoginPage = () => {
         <button>Login</button>
       </form>
       {errorText && <p>{errorText}</p>}
+      <p>Don't have an account with us? <a href="/sign-up">Sign up!</a></p>
     </>
   );
 };

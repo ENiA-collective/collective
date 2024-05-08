@@ -57,7 +57,7 @@ const SignUpPage = () => {
           value={formData.password}
         />
 
-<label htmlFor="confirmPassword">Confirm Password</label>
+        <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           autoComplete="off"
           type="password"
@@ -67,7 +67,7 @@ const SignUpPage = () => {
           value={formData.confirmPassword}
         />
 
-<label htmlFor="profilePicture">Profile Picture</label>
+        <label htmlFor="profilePicture">Upload Profile Picture</label>
         <input
           type="file"
           id="profilePicture"
