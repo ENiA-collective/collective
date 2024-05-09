@@ -45,6 +45,7 @@ const SignUpPage = () => {
           name="username"
           onChange={handleChange}
           value={formData.username}
+          required
         />
 
         <label htmlFor="password">Password</label>
@@ -55,6 +56,7 @@ const SignUpPage = () => {
           name="password"
           onChange={handleChange}
           value={formData.password}
+          required
         />
 
         <label htmlFor="confirmPassword">Confirm Password</label>
@@ -65,6 +67,7 @@ const SignUpPage = () => {
           name="confirmPassword"
           onChange={handleChange}
           value={formData.confirmPassword}
+          required
         />
 
         <label htmlFor="profilePicture">Upload Profile Picture</label>

@@ -25,14 +25,14 @@ const LoginPage = () => {
       <h1>Login</h1>
       <form onSubmit={handleSubmit} aria-labelledby="login-heading">
       <div>
-        <img src="/blank-profile-picture.png" alt="Profile Picture" style={{ width: "100px", height: "100px" }} />
+        <img src="https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=" alt="Profile Picture" style={{ width: "100px", height: "100px" }} />
       </div>
         <h2 id="login-heading">Login</h2>
         <label htmlFor="username">Username</label>
-        <input type="text" autoComplete="username" id="username" name="username" />
+        <input type="text" autoComplete="username" id="username" name="username" required/>
 
         <label htmlFor="password">Password</label>
-        <input type="password" autoComplete="current-password" id="password" name="password" />
+        <input type="password" autoComplete="current-password" id="password" name="password" required />
 
         <button>Login</button>
       </form>
