@@ -4,8 +4,8 @@
 
 ## Team
 
-  - __Product Owner__: TBD
-  - __Scrum Master__: TBD
+  - __Product Owner__: Nicole Blanchette
+  - __Scrum Master__: Alexa Leoto
   - __Development Team Members__: [Epifania Garcia](https://github.com/epifaniagb), [Alexa Leoto](https://github.com/alexaleoto), [Nicole Blanchette](https://github.com/nicoleblanchette) 
 
 ## Table of Contents
