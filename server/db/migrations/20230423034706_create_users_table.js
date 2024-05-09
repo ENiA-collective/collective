@@ -7,6 +7,8 @@ exports.up = (knex) => {
     table.increments('id').primary();
     table.string('username').notNullable().unique();
     table.string('display_name')
+    table.string('pronouns')
+    table.string('bio')
     table.string('password_hash').notNullable();
     table.string('pfp_src').notNullable();
     table.timestamp('created_at').defaultTo(knex.fn.now());
