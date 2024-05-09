@@ -1,6 +1,8 @@
 export default function HomePage() {
   return <>
     <h1>Home</h1>
-    <p>Put something interesting here!</p>
+    <ul>Unordered list moment
+      <li><p>Put stuff here</p></li>
+    </ul>
   </>;
 }
