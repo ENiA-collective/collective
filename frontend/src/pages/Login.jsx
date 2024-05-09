@@ -3,10 +3,10 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { logUserIn } from "../adapters/auth-adapter";
 import CurrentUserContext from "../contexts/current-user-context";
 
-export default function LoginPage() {
+const LoginPage = () => {
   const navigate = useNavigate();
-  const [errorText, setErrorText] = useState('');
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const [errorText, setErrorText] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,18 +20,26 @@ export default function LoginPage() {
 
   if (currentUser) return <Navigate to="/" />;
 
-  return <>
-    <h1>Login</h1>
-    <form onSubmit={handleSubmit} aria-labelledby="login-heading">
-      <h2 id='login-heading'>Log back in!</h2>
-      <label htmlFor="username">Username</label>
-      <input type="text" autoComplete="username" id="username" name="username" />
+  return (
+    <>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit} aria-labelledby="login-heading">
+      <div>
+        <img src="https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=" alt="Profile Picture" style={{ width: "100px", height: "100px" }} />
+      </div>
+        <h2 id="login-heading">Login</h2>
+        <label htmlFor="username">Username</label>
+        <input type="text" autoComplete="username" id="username" name="username" required/>
 
-      <label htmlFor="password">Password</label>
-      <input type="password" autoComplete="current-password" id="password" name="password" />
+        <label htmlFor="password">Password</label>
+        <input type="password" autoComplete="current-password" id="password" name="password" required />
 
-      <button>Log in!</button>
-    </form>
-    { !!errorText && <p>{errorText}</p> }
-  </>;
-}
+        <button>Login</button>
+      </form>
+      {errorText && <p>{errorText}</p>}
+      <p>Don't have an account with us? <a href="/sign-up">Sign up!</a></p>
+    </>
+  );
+};
+
+export default LoginPage;
