@@ -27,8 +27,8 @@
 - Node 0.10.x
 - Redis 2.6.x
 - Postgresql 9.1.x
-- etc
-- etc
+- React 17.x
+- Express.js 4.x
 
 ## Development
 
@@ -37,12 +37,12 @@
 From within the root directory:
 
 ```sh
-<COMMANDS_HERE>
+cd frontend && npm i && npm run build && cd ../server && npm i && npm run migrate && npm run seed
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECTS_TAB).
+View the project roadmap [here](https://github.com/orgs/ENiA-collective/projects/2/views/1).
 
 
 ## Contributing
