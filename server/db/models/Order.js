@@ -28,7 +28,7 @@ class Order {
       SELECT *
       FROM orders
       `;
-    
+
     const { rows } = await knex.raw(query);
     return rows;
   }

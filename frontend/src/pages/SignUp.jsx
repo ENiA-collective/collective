@@ -7,18 +7,20 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [errorText, setErrorText] = useState('');
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '', display_name: '', pronouns: '', pfp_src: '' });
 
   if (currentUser) return <Navigate to="/" />;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorText('');
-    const { username, password } = formData;
+    const { username, password, confirmPassword } = formData;
     if (!username || !password) return setErrorText('Missing username or password');
+    if (password !== confirmPassword) return setErrorText('Passwords do not match')
 
     const [user, error] = await createUser(formData);
     if (error) return setErrorText(error.message);
+    if (!user) return setErrorText('Username taken')
 
     setCurrentUser(user);
     navigate('/');
@@ -47,6 +49,26 @@ const SignUpPage = () => {
           value={formData.username}
           required
         />
+
+        <label htmlFor="display_name">Display Name</label>
+          <input
+            autoComplete="off"
+            type="text"
+            id="display_name"
+            name="display_name"
+            onChange={handleChange}
+            value={formData.display_name}
+          />
+
+        <label htmlFor="pronouns">Pronouns</label>
+          <input
+            autoComplete="off"
+            type="text"
+            id="pronouns"
+            name="pronouns"
+            onChange={handleChange}
+            value={formData.pronouns}
+          />
 
         <label htmlFor="password">Password</label>
         <input
