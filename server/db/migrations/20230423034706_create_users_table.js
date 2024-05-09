@@ -20,7 +20,7 @@ exports.up = (knex) => knex.schema.createTable('users', (table) => {
     table.integer('user_id').notNullable();
     table.foreign('user_id').references('id').inTable('users');
     table.boolean('available').defaultTo(true);
-    table.timestamps(true, true); // makes a created at and updated at column
+    table.timestamps(true, true); // makes a created_at and updated_at column
     table.point('location');
     table.string('image_url');
   })

@@ -23,6 +23,16 @@ class Order {
     return fulfilledOrder || null;
   }
 
+  static async list() {
+    const query = `
+      SELECT *
+      FROM orders
+      `;
+    
+    const { rows } = await knex.raw(query);
+    return rows;
+  }
+
   static async listMyOrders(getter_user_id) {
     const query = `
       SELECT *
