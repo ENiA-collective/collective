@@ -1,13 +1,18 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import CurrentUserContext from "../contexts/current-user-context";
 import { createUser } from "../adapters/user-adapter";
+import UploadWidget from "../components/UploadWidget";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [errorText, setErrorText] = useState('');
   const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '', display_name: '', pronouns: '', pfp_src: '' });
+
+  useEffect(() => {
+    console.log(formData)
+  }, formData)
 
   if (currentUser) return <Navigate to="/" />;
 
@@ -33,6 +38,13 @@ const SignUpPage = () => {
       [name]: value
     }));
   };
+
+  const handleImageUpload = (secure_url) => {
+    setFormData(prevData => ({
+      ...prevData,
+      pfp_src: secure_url
+    }))
+  }
 
   return (
     <>
@@ -91,7 +103,7 @@ const SignUpPage = () => {
           value={formData.confirmPassword}
           required
         />
-
+        <UploadWidget onUpload={handleImageUpload}/>
         <label htmlFor="profilePicture">Upload Profile Picture</label>
         <input
           type="file"
@@ -110,6 +122,7 @@ const SignUpPage = () => {
       </form>
       {errorText && <p>{errorText}</p>}
       <p>Already have an account with us? <Link to="/login">Log in!</Link></p>
+
     </>
   );
 }
