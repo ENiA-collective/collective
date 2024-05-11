@@ -1,14 +1,17 @@
 const Listing = require('../db/models/Listing'); // Adjust the path as necessary
+const { list } = require('../db/models/User');
 
 // Create a listing
 exports.createListing = async (req, res) => {
-    const { title, description, user_id, latitude, longitude, image_url } = req.body;
-    try {
-        const listing = await Listing.create(title, description, user_id, latitude, longitude, image_url);
-        res.status(201).send(listing);
-    } catch (error) {
-        res.status(400).send({ error: error.message });
-    }
+    const { title, description, user_id, latitude, longitude, image_src } = req.body;
+   // try {
+      const listing = await Listing.create(title, description, user_id, latitude, longitude, image_src);
+    //   console.log(listing)
+    //   console.log(res.body)
+    console.log(res.send(listing))
+    // } catch (error) {
+    //     res.status(500).send({ error: error.message });
+    // }
 };
 
 // List all listings

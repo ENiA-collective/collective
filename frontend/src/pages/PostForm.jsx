@@ -1,47 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import UploadWidget from '../components/UploadWidget';
-//import { currentUser };
+import CurrentUserContext from '../contexts/CurrentUserContext';
+import { createListing } from '../adapters/listing-adapter';
+import { useNavigate } from 'react-router-dom';
 //import getLoggedInUserId - where is this function supposed to come from?
-// this function also isn't necessary - just use the context
-// todo: make sure only logged in users can access this form
+
 
 const PostForm = () => {
-    const [formData, setFormData] = useState({
-        itemName: '',
-        itemDescription: '',
-        itemImage: null,
-        userCoordinates: null,
-        loggedInUserId: null
-    });
+  const navigate = useNavigate()
 
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setFormData(prevData => ({
-                        ...prevData,
-                        userCoordinates: {
-                            latitude: position.coords.latitude,
-                            longitude: position.coords.longitude
-                        }
-                    }));
-                },
-                (error) => {
-                    console.error('Error getting user location:', error);
-                }
-            );
-        } else {
-            console.error('Geolocation not supported by browser')
-        }
+  const { currentUser } = useContext(CurrentUserContext)
+  
+  const [errorText, setErrorText] = useState('')
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    image_src: '',
+    latitude: '',
+    longitude: '',
+    user_id: currentUser.id
+  });
 
-        const userId = getLoggedInUserId(); // what is this function??
-        setFormData(prevData => ({
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setFormData(prevData => ({
             ...prevData,
-            loggedInUserId: userId
-        }));
-    }, []);
-
-    /* Function to get logged in user ID */
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+          }));
+        },
+        (error) => {
+          setErrorText('Error getting user location:', error);
+        }
+      );
+    } else {
+      setErrorText('Geolocation not supported by browser')
+    }
+  }, [])
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -54,46 +52,59 @@ const PostForm = () => {
     const handleImageUpload = (secure_url) => {
       setFormData(prevData => ({
         ...prevData,
-        pfp_src: secure_url
+        image_src: secure_url
       }))
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        /* Handle form submission / request to backend here */
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const { title, description, image_src } = formData
+  
+      if (!title) return setErrorText('Missing title')
+      if (!description) return setErrorText('Missing description')
+      if (!image_src) return setErrorText('Please upload an image')
+    
+
+      const [response, error] = await createListing(formData)
+console.log({response, error})
+      //if(error) return setErrorText(error)
+      navigate('/')
     };
 
-  //  if()
+      //todo: make the words log in/ sign up links
+    if (!currentUser) return <p>Please log in or sign up to be able to post.</p>
   
     return (
       <div>
         <h1>List an Item</h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="item-name">Item Name:</label>
+            <label htmlFor="title">title</label>
             <input
                type="text"
-                id="item-name"
-                name="itemName"
-                value={formData.itemName}
+                id="title"
+                name="title"
+                value={formData.title}
                 onChange={handleInputChange}
                 required />
           </div>
           <div>
-            <label htmlFor="item-description">Item Description:</label>
+            <label htmlFor="description">Item Description:</label>
             <input
               type="text"
-              id="item-description"
-              name="itemDescription"
-              value={formData.itemDescription}
+              id="description"
+              name="description"
+              value={formData.description}
               onChange={handleInputChange}
               required />
           </div>
           <div>
             <label htmlFor='upload-widget'>Item Image:</label>
-            <UploadWidget id="upload-widget" onUpload={handleImageUpload} />
+            <UploadWidget id="upload-widget" onUpload={handleImageUpload} />   
           </div>
+          {errorText && <p>{ errorText}</p>}
+          {/*todo: disable submit button until image upload is complete */}
              <button type="submit">Submit</button>
           </form>
         </div>

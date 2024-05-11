@@ -10,10 +10,6 @@ const SignUpPage = () => {
   const [errorText, setErrorText] = useState('');
   const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '', display_name: '', pronouns: '', pfp_src: '' });
 
-  useEffect(() => {
-    console.log(formData)
-  }, formData)
-
   if (currentUser) return <Navigate to="/" />;
 
   const handleSubmit = async (event) => {

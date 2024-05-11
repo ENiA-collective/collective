@@ -21,7 +21,7 @@ const UploadWidget = ({onUpload}) => {
   }, [onUpload, buttonText])
 
   return (
-    <button onClick={() => widgetRef.current.open()}>{buttonText}</button>
+    <button type="button" onClick={() => widgetRef.current.open()}>{buttonText}</button>
   )
 };
 

@@ -1,9 +1,9 @@
 const knex = require('../knex'); // Ensure this points to your Knex configuration file
 
 class Listing {
-  static async create(title, description, user_id, latitude, longitude, image_url) {
+  static async create(title, description, user_id, latitude, longitude, image_src) {
     const query = `
-      INSERT INTO listings (title, description, user_id, location, image_url)
+      INSERT INTO listings (title, description, user_id, location, image_src)
       VALUES (?, ?, ?, point(?, ?), ?)
       RETURNING *;
     `;
@@ -14,7 +14,7 @@ class Listing {
       user_id,
       latitude,
       longitude,
-      image_url,
+      image_src,
     ]);
     return rows[0];
   }
