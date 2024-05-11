@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom";
-import CurrentUserContext from "../contexts/current-user-context";
+import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import { createUser } from "../adapters/user-adapter";
 import UploadWidget from "../components/UploadWidget";
 
@@ -62,11 +62,11 @@ const SignUpPage = () => {
           required
         />
 
-        <label htmlFor="display_name">Display Name</label>
+        <label htmlFor="display-name">Display Name</label>
           <input
             autoComplete="off"
             type="text"
-            id="display_name"
+            id="display-name"
             name="display_name"
             onChange={handleChange}
             value={formData.display_name}
@@ -93,26 +93,20 @@ const SignUpPage = () => {
           required
         />
 
-        <label htmlFor="confirmPassword">Confirm Password</label>
+        <label htmlFor="confirm-password">Confirm Password</label>
         <input
           autoComplete="off"
           type="password"
-          id="confirmPassword"
+          id="confirm-password"
           name="confirmPassword"
           onChange={handleChange}
           value={formData.confirmPassword}
           required
         />
-        <UploadWidget onUpload={handleImageUpload}/>
-        <label htmlFor="profilePicture">Upload Profile Picture</label>
-        <input
-          type="file"
-          id="profilePicture"
-          name="profilePicture"
-          accept="image/*"
-          onChange={handleChange}
-        />
 
+        <label htmlFor="profile-picture">Profile Picture:</label>
+        <UploadWidget id="profile-picture" onUpload={handleImageUpload}/>
+ 
         {/* In reality, we'd want a LOT more validation on signup, so add more things if you have time
             <label htmlFor="password-confirm">Password Confirm</label>
             <input autoComplete="off" type="password" id="password-confirm" name="passwordConfirm" />
