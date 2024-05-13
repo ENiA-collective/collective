@@ -1,8 +1,11 @@
-import { useEffect, useRef} from 'react'
+import { useEffect, useRef, useState} from 'react'
 
 const UploadWidget = ({onUpload}) => { 
   const cloudinaryRef = useRef()
   const widgetRef = useRef()
+
+  const [buttonText, setButtonText] = useState('Upload Image')
+
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget({
@@ -12,13 +15,13 @@ const UploadWidget = ({onUpload}) => {
     }, (error, result) => {
       if (result.event === 'success') {
         onUpload(result.info.secure_url)
-        //to do: make it so that the button changes appearance depending on the upload status
+        setButtonText('Uploaded!')
       } 
     })
-  }, [onUpload])
+  }, [onUpload, buttonText])
 
   return (
-    <button onClick={() => widgetRef.current.open() }>Upload</button>
+    <button type="button" onClick={() => widgetRef.current.open()}>{buttonText}</button>
   )
 };
 
