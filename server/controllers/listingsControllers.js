@@ -1,4 +1,4 @@
-const Listing = require('../db/models/Listing'); // Adjust the path as necessary
+const Listing = require('../db/models/Listing'); 
 
 // Create a listing
 exports.createListing = async (req, res) => {
@@ -71,7 +71,7 @@ exports.makeListingUnavailable = async (req, res) => {
 
 // List all listings from a specific user
 exports.listAllListingsFromUser = async (req, res) => {
-    const { user_id } = req.params; // Ensure you're capturing this param correctly
+    const { user_id } = req.params; 
     try {
         const listings = await Listing.listAllFromCurrentUser(user_id);
         res.send(listings);

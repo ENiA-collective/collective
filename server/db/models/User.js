@@ -18,18 +18,15 @@ class User {
     this.pfp_src = pfp_src; // || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQLTeg_bOJsXMkmRDM-YKCtqy91t0Way8KP99OFb53AA&s' should be unecessary as this is handled in the create() method
     this.is_admin = this.username === 'cheeseburger';
     this.created_at = created_at;
-    // doesn't need to be in the create() method because it is auto generated
   }
 
-  // This instance method takes in a plain-text password and returns true if it matches
-  // the User instance's hashed password.
+  
   isValidPassword = async (password) => (
     authUtils.isValidPassword(password, this.#passwordHash)
   );
 
   static async create(username, password, display_name, pronouns, pfp_src) {
-    // hash the plain-text password using bcrypt before storing it in the database
-
+    
     const passwordHash = await authUtils.hashPassword(password);
     const is_admin = username === 'cheeseburger';
     const profilePicSrc = pfp_src || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQLTeg_bOJsXMkmRDM-YKCtqy91t0Way8KP99OFb53AA&s';
@@ -53,7 +50,6 @@ class User {
   static async list() {
     const query = `SELECT * FROM users`;
     const { rows } = await knex.raw(query);
-    // use the constructor to hide each user's passwordHash
     return rows.map((user) => new User(user));
   }
 
@@ -71,7 +67,7 @@ class User {
     return user ? new User(user) : null;
   }
 
-  // this is an instance method that we can use to update
+
   static async editUser(id, display_name, pronouns, bio) {
     const query = `
       UPDATE users

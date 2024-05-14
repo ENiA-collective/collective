@@ -7,7 +7,7 @@ const logRoutes = require('./middleware/logRoutes');
 
 const authRouter = require('./routers/authRouter');
 const userRouter = require('./routers/userRouter');
-
+const listingRouter = require('./routers/listingRouter');
 const app = express();
 
 // middleware
@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, '../frontend/dist'))); // Serve stat
 
 app.use('/api', authRouter);
 app.use('/api/users', userRouter);
-
+app.use('/api/listings', listingRouter);
 // Requests meant for the API will be sent along to the router.
 // For all other requests, send back the index.html file in the dist folder.
 app.get('*', (req, res, next) => {
