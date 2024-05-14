@@ -1,4 +1,4 @@
-const basicFetchOptions = {
+export const basicFetchOptions = {
   method: 'GET',
   credentials: 'include',
 };
@@ -30,7 +30,6 @@ export const fetchHandler = async (url, options = {}) => {
 
     const isJson = (headers.get('content-type') || '').includes('application/json');
     const responseData = await (isJson ? response.json() : response.text());
-
     return [responseData, null];
   } catch (error) {
     console.warn(error);
