@@ -1,8 +1,8 @@
 const express = require('express');
 const listingRouter = express.Router();
-const listingControllers = ('../controllers/listingControllers');
+const listingControllers = require('../controllers/listingControllers');
 // Middleware to check if the user is authenticated
-const { checkAuthentication } = require('../middleware/checkAuthentication');
+const checkAuthentication = require('../middleware/checkAuthentication');
 
 console.log(listingControllers); // Add this to check the imported object
 console.log(checkAuthentication); // Add this to check the middleware
