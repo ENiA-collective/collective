@@ -62,10 +62,11 @@ class Listing {
 	}
 	static async editPost(id, title, description) {
 		const query = `
-        UPDATE listings SET title = ?, description = ?
+        UPDATE listings SET title = ?, description = ?, updated_at = ?
         WHERE id = ? RETURNING *;
     `
-		const { rows } = await knex.raw(query, [title, description, id])
+    const timestamp = knex.fn.now()
+		const { rows } = await knex.raw(query, [title, description, timestamp, id])
 		return rows[0]
 	}
 	static async makeUnavailable(id) {

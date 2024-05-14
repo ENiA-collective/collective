@@ -11,8 +11,8 @@ listingRouter.post('/', checkAuthentication, listingControllers.createListing);
 listingRouter.get('/', listingControllers.listAllListings);
 listingRouter.get('/:id', listingControllers.findListingById);
 listingRouter.delete('/:id', checkAuthentication, listingControllers.deleteListing);
-listingRouter.put('/:id', checkAuthentication, listingControllers.editListing);
-listingRouter.put('/:id/unavailable', checkAuthentication, listingControllers.makeListingUnavailable);
+listingRouter.patch('/:id', checkAuthentication, listingControllers.editListing);
+listingRouter.patch('/:id/unavailable', checkAuthentication, listingControllers.makeListingUnavailable);
 listingRouter.get('/user/:user_id', listingControllers.listAllListingsFromUser);
 
 module.exports = listingRouter;
