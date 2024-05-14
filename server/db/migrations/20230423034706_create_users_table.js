@@ -32,7 +32,7 @@ exports.up = (knex) => knex.schema.createTable('users', (table) => {
     table.foreign('giver_user_id').references('id').inTable('users');
     table.integer('listing_id').notNullable();
     table.foreign('listing_id').references('id').inTable('listings');
-    table.timestamp('order_time').defaultTo(knex.fn.now());
+    table.timestamps(true, true)
     table.boolean('fulfilled').defaultTo(false);
   });
 
