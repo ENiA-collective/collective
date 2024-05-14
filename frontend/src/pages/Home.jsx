@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchListings } from '../adapters/listing-adapter';
+import fetchListings from '../adapters/listing-adapter';
 
 const HomePage = () => {
   const [listings, setListings] = useState([]);
