@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import CurrentUserContext from "../contexts/current-user-context";
+import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
 import UpdateUsernameForm from "../components/UpdateUsernameForm";
@@ -39,6 +39,7 @@ export default function UserPage() {
 
   return <>
     <h1>{profileUsername}</h1>
+    <img alt="profile image" src={userProfile.pfp_src} />
     {!!isCurrentUserProfile && <button onClick={handleLogout}>Log Out</button>}
     <p>If the user had any data, here it would be</p>
     <p>Fake Bio or something</p>
