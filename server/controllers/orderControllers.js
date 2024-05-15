@@ -13,7 +13,7 @@ exports.createOrder = async (req, res) => {
 
 // Fulfill an order
 exports.fulfillOrder = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.params; // this might have to be changed to req.body but it is 100% dependent on our frontend structure
     try {
         const order = await Order.fulfill(id);
         if (!order) {
@@ -34,6 +34,16 @@ exports.listAllOrders = async (req, res) => {
         res.status(500).send({ error: error.message });
     }
 };
+
+exports.getById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const order = await Order.findById(id)
+    res.send(order)
+  } catch (error) {
+    res.status(500).send({error: error.message})
+  }
+}
 
 // List orders by getter user ID
 exports.listMyOrders = async (req, res) => {

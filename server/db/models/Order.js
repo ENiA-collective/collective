@@ -13,12 +13,13 @@ class Order {
   static async fulfill(id) {
     const query = `
     UPDATE orders
-    SET fulfilled=true
+    SET fulfilled=true, updated_at=?
     WHERE id=?
     RETURNING *
     `;
 
-    const { rows } = await knex.raw(query, [id]);
+    const timestamp = knex.fn.now()
+    const { rows } = await knex.raw(query [timestamp, id]);
     const fulfilledOrder = rows[0];
     return fulfilledOrder || null;
   }
@@ -33,11 +34,22 @@ class Order {
     return rows;
   }
 
+  static async findById(id) {
+    const query = `
+      SELECT * 
+      FROM orders
+      WHERE id=?
+      `;
+    
+    const { rows } = await knex.raw(query, [id]);
+    return rows[0]
+  }
+
   static async listMyOrders(getter_user_id) {
     const query = `
       SELECT *
       FROM orders
-      WHERE id=?
+      WHERE getter_user_id=?
       `;
 
     const { rows } = await knex.raw(query, [getter_user_id]);
@@ -48,7 +60,7 @@ class Order {
     const query = `
     SELECT *
     FROM orders
-    WHERE id=?`;
+    WHERE giver_user_id=?`;
 
     const { rows } = await knex.raw(query, [giver_user_id]);
     return rows;

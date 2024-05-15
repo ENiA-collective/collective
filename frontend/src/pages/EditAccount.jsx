@@ -3,8 +3,9 @@ import { useNavigate, Navigate, Link } from "react-router-dom"
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx"
 import { createUser } from "../adapters/user-adapter"
 import AccountForm from "../components/AccountForm.jsx";
-
-const SignUpPage = () => {
+//TODO: ...this is just a copy and paste of the sign up form! refactor to handle edits instead of creating
+//a brand new resource
+const EditAccount = () => {
 	const navigate = useNavigate()
 	const { currentUser, setCurrentUser } = useContext(CurrentUserContext)
 	const [errorText, setErrorText] = useState("")
@@ -49,4 +50,4 @@ const SignUpPage = () => {
 	)
 }
 
-export default SignUpPage
+export default EditAccount
