@@ -29,8 +29,16 @@ export const createListing = async ({
   );
 
 const fetchListings = async () => {
-  await fetchHandler(baseUrl);
-  return data;
+  const [listings] = await fetchHandler(baseUrl);
+  return listings || [];
 };
+
+export const getListing = async (id) => fetchHandler(`${baseUrl}/${id}`);
+
+export const updateListing = async ({ id, title, description }) =>
+  fetchHandler(`${baseUrl}/${id}`, getPatchOptions({ id, title, description }));
+
+export const deleteListing = async (id) =>
+  fetchHandler(`${baseUrl}/${id}`, deleteOptions());
 
 export default fetchListings;
