@@ -56,34 +56,10 @@ class Listing {
       DELETE FROM listings
       WHERE id=?
       RETURNING *
-    `
-		const { rows } = await knex.raw(query, [id])
-		return rows[0] // Returns the deleted listing
-	}
-	static async editPost(id, title, description) {
-		const query = `
-        UPDATE listings SET title = ?, description = ?, updated_at = ?
-        WHERE id = ? RETURNING *;
-    `
-    const timestamp = knex.fn.now()
-		const { rows } = await knex.raw(query, [title, description, timestamp, id])
-		return rows[0]
-	}
-	static async makeUnavailable(id) {
-		const query = `
-      UPDATE listings SET available = false
-      WHERE id = ? RETURNING *;
-  `
-		const { rows } = await knex.raw(query, [id])
-		return rows[0]
-	}
-	static async listAllFromCurrentUser(user_id) {
-		const query = `
-      SELECT * FROM listings WHERE user_id = ?;
-  `
-		const { rows } = await knex.raw(query, [user_id])
-		return rows
-	}
+    `;
+    const { rows } = await knex.raw(query, [id]);
+    return rows[0]; // Returns the deleted listing
+  }
 }
 
 module.exports = Listing
