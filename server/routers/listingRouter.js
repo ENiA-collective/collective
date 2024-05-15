@@ -4,8 +4,8 @@ const listingControllers = require('../controllers/listingControllers');
 // Middleware to check if the user is authenticated
 const checkAuthentication = require('../middleware/checkAuthentication');
 
-console.log(listingControllers); // Add this to check the imported object
-console.log(checkAuthentication); // Add this to check the middleware
+//console.log(listingControllers); // Add this to check the imported object
+//console.log(checkAuthentication); // Add this to check the middleware
 
 listingRouter.post('/', checkAuthentication, listingControllers.createListing);
 listingRouter.get('/', listingControllers.listAllListings);
