@@ -34,12 +34,24 @@ exports.up = (knex) => knex.schema.createTable('users', (table) => {
     table.foreign('listing_id').references('id').inTable('listings');
     table.timestamps(true, true)
     table.boolean('fulfilled').defaultTo(false);
+  })
+  .createTable('conversations', (table) => {
+    table.increments('id').primary();
+    table.integer('sender_id');
+    table.foreign('sender_id')
+    table.integer('order_id');
+    table.timestamp('created_at').defaultTo(knex.fn.now());
+  })
+  .createTable('messages', (table) => {
+    table.increments('id').primary();
+    table.integer('conversation_id');
   });
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = (knex) => knex.schema.dropTable('orders')
+exports.down = (knex) => knex.schema.dropTable('conversations')
+  .dropTable('orders')
   .dropTable('listings')
   .dropTable('users');
