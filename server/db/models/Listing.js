@@ -94,12 +94,6 @@ class Listing {
 		const { rows } = await knex.raw(query, [user_id])
 		return rows;
 	}
-
-    `;
-    const { rows } = await knex.raw(query, [id]);
-    return rows[0]; // Returns the deleted listing
-  }
-
-}
+};
 
 module.exports = Listing

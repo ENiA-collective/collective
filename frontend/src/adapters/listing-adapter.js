@@ -7,56 +7,31 @@ import {
 
 const baseUrl = '/api/listings';
 
-//note: uses implicit return
-
+// Create a listing
 export const createListing = async ({ title, description, image_src, latitude, longitude, user_id }) => (
   fetchHandler(baseUrl, getPostOptions({ title, description, image_src, latitude, longitude, user_id }))
 );
 
+// Fetch a single listing by ID
 export const fetchListing = async (id) => (
   fetchHandler(`${baseUrl}/${id}`)
 );
 
+// Update a listing
 export const updateListing = async (id, data) => (
   fetchHandler(`${baseUrl}/${id}`, getPatchOptions(data))
 );
 
+// Delete a listing
 export const deleteListing = async (id) => (
   fetchHandler(`${baseUrl}/${id}`, deleteOptions())
 );
 
-export const createListing = async ({
-  title,
-  description,
-  image_src,
-  latitude,
-  longitude,
-  user_id,
-}) =>
-  fetchHandler(
-    baseUrl,
-    getPostOptions({
-      title,
-      description,
-      image_src,
-      latitude,
-      longitude,
-      user_id,
-    })
-  );
-
-const fetchListings = async () => {
-  const [listings] = await fetchHandler(baseUrl);
+// Fetch all listings
+export const fetchListings = async () => {
+  const [listings, error] = await fetchHandler(baseUrl);
+  if (error) console.log(error); // Print the error for simplicity.
   return listings || [];
 };
 
-export const getListing = async (id) => fetchHandler(`${baseUrl}/${id}`);
-
-export const updateListing = async ({ id, title, description }) =>
-  fetchHandler(`${baseUrl}/${id}`, getPatchOptions({ id, title, description }));
-
-export const deleteListing = async (id) =>
-  fetchHandler(`${baseUrl}/${id}`, deleteOptions());
-
 export default fetchListings;
-
