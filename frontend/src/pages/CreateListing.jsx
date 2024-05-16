@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useContext } from "react"
-import UploadWidget from "../components/UploadWidget"
+import ListingForm from "../components/ListingForm"
 import CurrentUserContext from "../contexts/CurrentUserContext"
 import { createListing } from "../adapters/listing-adapter"
 import { useNavigate } from "react-router-dom"
-//import getLoggedInUserId - where is this function supposed to come from?
 
-const PostForm = () => {
+const CreateListing = () => {
 	const navigate = useNavigate()
 
 	const { currentUser } = useContext(CurrentUserContext)
-
 	const [errorText, setErrorText] = useState("")
 	const [formData, setFormData] = useState({
 		title: "",
@@ -18,8 +16,8 @@ const PostForm = () => {
 		latitude: "",
 		longitude: "",
 		user_id: currentUser.id,
-	})
-
+  })
+  
 	useEffect(() => {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
@@ -39,21 +37,6 @@ const PostForm = () => {
 		}
 	}, [])
 
-	const handleInputChange = e => {
-		const { name, value } = e.target
-		setFormData(prevData => ({
-			...prevData,
-			[name]: value,
-		}))
-	}
-
-	const handleImageUpload = secure_url => {
-		setFormData(prevData => ({
-			...prevData,
-			image_src: secure_url,
-		}))
-	}
-
 	const handleSubmit = async e => {
 		e.preventDefault()
 
@@ -63,53 +46,23 @@ const PostForm = () => {
 		if (!description) return setErrorText("Missing description")
 		if (!image_src) return setErrorText("Please upload an image")
 
-		console.log("submitted!")
-
 		const [listing, error] = await createListing(formData)
 		if (error) return setErrorText(error.message)
 
-		navigate("/")
+		navigate(-1)
 	}
 
 	//todo: make the words log in/ sign up links
 	if (!currentUser) return <p>Please log in or sign up to be able to post.</p>
 
 	return (
-		<div>
+		<> {/*Replaced div with fragment as there's only two or 3 components here that do not
+    need to be grouped together for styling*/}
 			<h1>List an Item</h1>
-			<form onSubmit={handleSubmit}>
-				<div>
-					<label htmlFor='title'>title</label>
-					<input
-						type='text'
-						id='title'
-						name='title'
-						value={formData.title}
-						onChange={handleInputChange}
-						required
-					/>
-				</div>
-				<div>
-					<label htmlFor='description'>Item Description:</label>
-					<input
-						type='text'
-						id='description'
-						name='description'
-						value={formData.description}
-						onChange={handleInputChange}
-						required
-					/>
-				</div>
-				<div>
-					<label htmlFor='upload-widget'>Item Image:</label>
-					<UploadWidget id='upload-widget' onUpload={handleImageUpload} />
-				</div>
-				{errorText && <p>{errorText}</p>}
-				{/*todo: disable submit button until image upload is complete */}
-				<button type='submit'>Submit</button>
-			</form>
-		</div>
+      <ListingForm handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} />
+      {errorText && <p>{errorText}</p>}
+		</>
 	)
 }
 
-export default PostForm
+export default CreateListing

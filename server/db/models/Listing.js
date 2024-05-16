@@ -60,29 +60,38 @@ class Listing {
 		const { rows } = await knex.raw(query, [id])
 		return rows[0] // Returns the deleted listing
 	}
+
 	static async editPost(id, title, description, image_url) {
 		const query = `
-        UPDATE listings SET title = ?, description = ?, updated_at = ?
-        WHERE id = ? RETURNING *;
+        UPDATE listings 
+		SET title = ?, description = ?, image_src = ?, updated_at = ?
+        WHERE id = ? 
+		RETURNING *;
     `
     const timestamp = knex.fn.now()
-		const { rows } = await knex.raw(query, [title, description, timestamp, id])
-		return rows[0]
+		const { rows } = await knex.raw(query, [title, description, image_url, timestamp, id]);
+		return rows[0];
 	}
+
 	static async makeUnavailable(id) {
 		const query = `
-      UPDATE listings SET available = false
-      WHERE id = ? RETURNING *;
+      UPDATE listings 
+	  SET available = false
+      WHERE id = ? 
+	  RETURNING *;
   `
 		const { rows } = await knex.raw(query, [id])
-		return rows[0]
+		return rows[0];
 	}
+
 	static async listAllFromCurrentUser(user_id) {
 		const query = `
-      SELECT * FROM listings WHERE user_id = ?;
+      SELECT * 
+	  FROM listings 
+	  WHERE user_id = ?;
   `
 		const { rows } = await knex.raw(query, [user_id])
-		return rows
+		return rows;
 	}
 }
 
