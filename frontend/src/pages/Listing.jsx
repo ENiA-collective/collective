@@ -66,9 +66,10 @@ const Listing = () => {
         <DeleteListing listingId={listing.id} setErrorText={setErrorText} />
       </>
       :
-        <RequestItem />
+        <RequestItem listing={listing} setErrorText={setErrorText} />
     }
   </>
 }
 
 export default Listing;
+// should render amount of requests and redirect to order screen if the user owns the listing
