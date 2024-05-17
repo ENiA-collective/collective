@@ -35,4 +35,9 @@ export const fetchListings = async () => {
 
 export const getListing = async (id) => fetchHandler(`${baseUrl}/${id}`);
 
+// track how many users have placed an order on an item
+export const updateCount = async (id, newCount) => (
+  fetchHandler(`${baseUrl}/${id}/count`, getPatchOptions({ id, newCount }))
+);
+
 export default fetchListings;

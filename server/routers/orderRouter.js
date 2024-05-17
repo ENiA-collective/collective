@@ -10,6 +10,7 @@ orderRouter.get('/:id', checkAuthentication, orderControllers.getById);
 orderRouter.patch('/:id', checkAuthentication, orderControllers.fulfillOrder);
 orderRouter.get('/my-orders', checkAuthentication, orderControllers.listMyOrders);
 orderRouter.get('/my-gifts', checkAuthentication, orderControllers.listMyGifts);
+orderRouter.get('/check-if-ordered', checkAuthentication, orderControllers.checkIfOrderedByUser )
 
 module.exports = orderRouter;
 
