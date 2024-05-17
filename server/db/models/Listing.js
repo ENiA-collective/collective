@@ -56,10 +56,55 @@ class Listing {
       DELETE FROM listings
       WHERE id=?
       RETURNING *
-    `;
-    const { rows } = await knex.raw(query, [id]);
-    return rows[0]; // Returns the deleted listing
+
+    `
+		const { rows } = await knex.raw(query, [id])
+		return rows[0] // Returns the deleted listing
+	}
+
+	static async editPost(id, title, description, image_url) {
+		const query = `
+        UPDATE listings 
+		SET title = ?, description = ?, image_src = ?, updated_at = ?
+        WHERE id = ? 
+		RETURNING *;
+    `
+    const timestamp = knex.fn.now()
+		const { rows } = await knex.raw(query, [title, description, image_url, timestamp, id]);
+		return rows[0];
+	}
+
+	static async makeUnavailable(id) {
+		const query = `
+      UPDATE listings 
+	  SET available = false
+      WHERE id = ? 
+	  RETURNING *;
+  `
+		const { rows } = await knex.raw(query, [id])
+		return rows[0];
+	}
+
+	static async listAllFromCurrentUser(user_id) {
+		const query = `
+      SELECT * 
+	  FROM listings 
+	  WHERE user_id = ?;
+  `
+		const { rows } = await knex.raw(query, [user_id])
+		return rows;
   }
-}
+  
+  static async orderCounter(id, newCount) {
+    const query = `
+      UPDATE listings
+      SET order_count = ?
+      WHERE id = ?
+      RETURNING *;
+      `
+    const { rows } = await knex.raw(query, [newCount, id])
+    return rows[0];
+  }
+};
 
 module.exports = Listing

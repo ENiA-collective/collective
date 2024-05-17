@@ -4,11 +4,11 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const RequestItem = ({ listing, setErrorText }) => {
   const { currentUser } = useContext(CurrentUserContext)
-  //const [count, setCount] = (0)
-  const [buttonText, setButtonText] = useState(`Request Item - 5 Request(s) Made`)
+  const [count, setCount] = (listing.order_count)
+  const [buttonText, setButtonText] = useState(`Request Item - ${count} Request(s) Made`)
   
   useEffect(() => {
-
+//increment order count via patch req.
   }, [buttonText])
 
   const handleClick = async () => {
@@ -24,7 +24,7 @@ const RequestItem = ({ listing, setErrorText }) => {
     setButtonText(`Requested! - Other User(s) Requested`)
   }
 
-
+//implement a check to see if the user alr ordered the item
   //request body needs
   //listing ID
   // original poster ID
