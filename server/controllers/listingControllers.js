@@ -96,3 +96,14 @@ exports.listAllListingsFromUser = async (req, res) => {
 		res.status(500).send({ error: error.message })
 	}
 }
+
+exports.incrementCount = async (req, res) => {
+  const { id } = req.params
+  const { newCount } = req.body
+  try {
+    const listing = await Listing.orderCounter(id, newCount)
+    res.send(listing)
+  } catch (error) {
+    res.status(500).send({error: error.message})
+  }
+}

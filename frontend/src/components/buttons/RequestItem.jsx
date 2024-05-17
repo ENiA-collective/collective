@@ -8,12 +8,12 @@ const RequestItem = ({ listing, setErrorText }) => {
   const [buttonText, setButtonText] = useState(`Request Item - ${count} Request(s) Made`)
   
   useEffect(() => {
-//increment order count via patch req.
+ //send patch req to increment count
   }, [buttonText])
 
   const handleClick = async () => {
     if (!currentUser) return setErrorText('Please log in or make an account to place an order.')
-  //  setCount(count => count + 1)
+    setCount(prevCount => prevCount + 1)
     const orderDetails = {
       listing_id: listing.id,
       giver_user_id: listing.user_id,
@@ -21,7 +21,7 @@ const RequestItem = ({ listing, setErrorText }) => {
     }
     const [order, error] = await createOrder(orderDetails)
     if(error) return setErrorText(error.message)
-    setButtonText(`Requested! - Other User(s) Requested`)
+    setButtonText(`Requested! - ${count} Other User(s) Requested`)
   }
 
 //implement a check to see if the user alr ordered the item
