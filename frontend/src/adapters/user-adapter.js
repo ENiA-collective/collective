@@ -14,7 +14,7 @@ export const getAllUsers = async () => {
 };
 
 export const getUser = async (id) => {
-  if (!id) return []
+  if (!id) return [{username: ''}]
   return fetchHandler(`${baseUrl}/${id}`)
 };
 

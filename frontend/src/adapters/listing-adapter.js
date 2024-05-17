@@ -39,6 +39,6 @@ export const updateListing = async ({ id, title, description }) =>
   fetchHandler(`${baseUrl}/${id}`, getPatchOptions({ id, title, description }));
 
 export const deleteListing = async (id) =>
-  fetchHandler(`${baseUrl}/${id}`, deleteOptions());
+  fetchHandler(`${baseUrl}/${id}`, deleteOptions);
 
 export default fetchListings;

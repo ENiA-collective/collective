@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getListing } from "../adapters/listing-adapter";
 import { getUser } from "../adapters/user-adapter";
 import CurrentUserContext from "../contexts/CurrentUserContext";
+import UserLink from '../components/buttons/UserLink'
+import DeleteListing from "../components/buttons/DeleteListing";
+import RequestItem from "../components/buttons/RequestItem";
 
 
 const Listing = () => {
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
   const { id } = useParams() 
   const {currentUser} = useContext(CurrentUserContext)
   const [errorText, setErrorText] = useState('')
@@ -30,25 +33,40 @@ const Listing = () => {
     };
     loadUser();
   }, [listing])
-  //todo: make time not ugly + include original poster pfp
-  //actually make all of it not ugly
-  //usernames navigate to profile
-  //buttons
+
+  const readableDate = (timestamp) => {
+    const date = new Date(timestamp)
+    const options = {
+      weekday: 'short',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    }
+
+    return date.toLocaleString('en-US', options)
+  }
+
+  const handleEdit = () => {
+    navigate(`/listings/${id}/edit`)
+  }
+
   return <>
     <h1>{listing.title}</h1>
     <img src={listing.image_src} />
-    <p>Posted on: {listing.created_at}</p>
+    <p>Posted on: {readableDate(listing.created_at)}</p>
     <img src={originalPoster.pfp_src} />
-    <p>Posted by: <Link to={`/users/${originalPoster.id}`}> @{originalPoster.username}</Link ></p>
+    <p>Posted by: <UserLink user={ originalPoster} /></p>
     <p>Description: {listing.description}</p>
     {errorText && <p>{errorText}</p>}
     {currentUser.id === originalPoster.id ?
       <>
-        <button type="button">Edit Listing</button>
-        <button type="button">Delete Listing</button>
+        <button type="button" onClick={handleEdit}>Edit Listing</button>
+        <DeleteListing listingId={listing.id} setErrorText={setErrorText} />
       </>
       :
-      <button type="button">Request Item</button>
+        <RequestItem />
     }
   </>
 }
