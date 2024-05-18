@@ -19,7 +19,7 @@ class Order {
     `;
 
     const timestamp = knex.fn.now()
-    const { rows } = await knex.raw(query [timestamp, id]);
+    const { rows } = await knex.raw(query, [timestamp, id]);
     const fulfilledOrder = rows[0];
     return fulfilledOrder || null;
   }
@@ -32,6 +32,16 @@ class Order {
 
     const { rows } = await knex.raw(query);
     return rows;
+  }
+
+  static async checkIfUserOrdered(user_id, listing_id) {
+    const query = `
+      SELECT *
+      FROM orders
+      WHERE getter_id = ? AND listing_id = ?
+    `
+    const { rows } = await knex.raw(query, [user_id, listing_id])
+    return !!(rows.length) //returns "true" if a user already ordered the item, and "false" if not
   }
 
   static async findById(id) {

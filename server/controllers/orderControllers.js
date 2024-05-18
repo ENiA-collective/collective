@@ -35,6 +35,16 @@ exports.listAllOrders = async (req, res) => {
     }
 };
 
+exports.checkIfOrderedByUser = async (req, res) => {
+  const {user_id, listing_id} = req.body
+  try {
+    const result = await Order.checkIfUserOrdered(user_id, listing_id);
+    res.send(result)
+  } catch (error) {
+    res.status(500).send({error: error.message})
+  }
+}
+
 exports.getById = async (req, res) => {
   const { id } = req.params
   try {

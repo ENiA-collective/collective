@@ -12,6 +12,8 @@ import CreateListing from './pages/CreateListing.jsx'
 import EditListing from './pages/EditListing.jsx';
 import About from './pages/About.jsx';
 import EditAccount from './pages/EditAccount.jsx';
+import Listing from './pages/Listing.jsx'
+import MyGifts from './pages/MyGifts.jsx';
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
@@ -29,8 +31,9 @@ export default function App() {
         <Route path='/users/:id' element={<UserPage />} />
         <Route path='/users/:id/edit' element={<EditAccount />} />
         <Route path='/post' element={<CreateListing />} />
-        {/* <Route path='/listing/:id' element={ } /> View an individual listing*/}
-        <Route path='/listing/:id/edit' element={<EditListing />} />
+        <Route path='/listings/:id' element={ <Listing /> } /> 
+        <Route path='/listings/:id/edit' element={<EditListing />} />
+        <Route path='/orders/my-gifts' element={<MyGifts />} />
         <Route path='/about' element={<About />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
