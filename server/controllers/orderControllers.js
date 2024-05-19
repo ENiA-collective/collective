@@ -36,13 +36,13 @@ exports.listAllOrders = async (req, res) => {
 };
 
 exports.checkIfOrderedByUser = async (req, res) => {
-  const {user_id, listing_id} = req.body
+  const {userId, listingId} = req.query
   try {
-    const result = await Order.checkIfUserOrdered(user_id, listing_id);
-    res.send(result)
+    const orders = await Order.checkIfUserOrdered(userId, listingId)
+    res.send(orders)
   } catch (error) {
     res.status(500).send({error: error.message})
-  }
+ }
 }
 
 exports.getById = async (req, res) => {

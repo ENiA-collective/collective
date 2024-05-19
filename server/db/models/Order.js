@@ -38,10 +38,10 @@ class Order {
     const query = `
       SELECT *
       FROM orders
-      WHERE getter_id = ? AND listing_id = ?
-    `
+      WHERE getter_user_id = ? AND listing_id = ?
+      `
     const { rows } = await knex.raw(query, [user_id, listing_id])
-    return !!(rows.length) //returns "true" if a user already ordered the item, and "false" if not
+    return !!(rows.length) // will return 'true' if a match was found, and 'false' if there is no match
   }
 
   static async findById(id) {
