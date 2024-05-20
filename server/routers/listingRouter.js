@@ -10,14 +10,30 @@ const checkAuthentication = require('../middleware/checkAuthentication');
 listingRouter.post('/', checkAuthentication, listingControllers.createListing);
 listingRouter.get('/', listingControllers.listAllListings);
 listingRouter.get('/:id', listingControllers.findListingById);
-listingRouter.delete('/:id', checkAuthentication, listingControllers.deleteListing);
-listingRouter.patch('/:id', checkAuthentication, listingControllers.editListing);
-listingRouter.patch('/:id/unavailable', checkAuthentication, listingControllers.makeListingUnavailable);
-listingRouter.patch('/:id/count', checkAuthentication, listingControllers.incrementCount)
-<<<<<<< HEAD
-listingRouter.get('/user/:user_id', listingControllers.listAllListingsFromUser);
-=======
-listingRouter.get('/user/:user_id', checkAuthentication, listingControllers.listAllListingsFromUser);
->>>>>>> main
+listingRouter.delete(
+  '/:id',
+  checkAuthentication,
+  listingControllers.deleteListing
+);
+listingRouter.patch(
+  '/:id',
+  checkAuthentication,
+  listingControllers.editListing
+);
+listingRouter.patch(
+  '/:id/unavailable',
+  checkAuthentication,
+  listingControllers.makeListingUnavailable
+);
+listingRouter.patch(
+  '/:id/count',
+  checkAuthentication,
+  listingControllers.incrementCount
+);
+listingRouter.get(
+  '/user/:user_id',
+  checkAuthentication,
+  listingControllers.listAllListingsFromUser
+);
 
 module.exports = listingRouter;
