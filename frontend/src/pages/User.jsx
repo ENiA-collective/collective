@@ -1,30 +1,38 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import { getUser } from "../adapters/user-adapter";
+import { fetchListingsByUser } from "../adapters/listing-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
-//import UpdateUsernameForm from "../components/UpdateUsernameForm";
+import ListingCard from '../components/ListingCard';
 
 export default function UserPage() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [userProfile, setUserProfile] = useState(null);
+  const [listings, setListings] = useState([]);
   const [errorText, setErrorText] = useState(null);
   const { id } = useParams();
   const isCurrentUserProfile = currentUser && currentUser.id === Number(id);
 
   useEffect(() => {
-    const loadUser = async () => {
-      const [user, error] = await getUser(id);
-      if (error) return setErrorText(error.message);
-      setUserProfile(user);
+    const loadUserData = async () => {
+      try {
+        const user = await getUser(id);
+        setUserProfile(user);
+
+        const userListings = await fetchListingsByUser(id);
+        setListings(userListings);
+      } catch (error) {
+        setErrorText(error.message);
+      }
     };
 
-    loadUser();
+    loadUserData();
   }, [id]);
 
   const handleLogout = async () => {
-    logUserOut();
+    await logUserOut();
     setCurrentUser(null);
     navigate('/');
   };
@@ -32,22 +40,29 @@ export default function UserPage() {
   if (!userProfile && !errorText) return null;
   if (errorText) return <p>{errorText}</p>;
 
-  // What parts of state would change if we altered our currentUser context?
-  // Ideally, this would update if we mutated it
-  // But we also have to consider that we may NOT be on the current users page
-  const profileUsername = isCurrentUserProfile ? currentUser.username : userProfile.username;
+  return (
+    <div>
+      <img alt="profile image" src={userProfile.pfp_src} />
+      <h1>{userProfile.displayName}</h1>
+      <h2>@{userProfile.username}</h2>
+      <p>{userProfile.pronouns}</p>
+      <p>{userProfile.bio}</p>
 
-  return <>
-    <h1>{profileUsername}</h1>
-    <img alt="profile image" src={userProfile.pfp_src} />
-    {!!isCurrentUserProfile && <button onClick={handleLogout}>Log Out</button>}
-    <p>If the user had any data, here it would be</p>
-    <p>Fake Bio or something</p>
-    <button type="button" onClick={() => navigate('/orders/my-gifts')}>Orders: Giving</button>
-    <button type="button" onClick={() => navigate('/orders/my-orders')}>Orders: Receiving</button>
-    {/* {
-      !!isCurrentUserProfile
-      && <UpdateUsernameForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
-    } */}
-  </>;
+      {isCurrentUserProfile && (
+        <div>
+          <button onClick={() => navigate(`/users/${id}/edit`)}>Edit Profile</button>
+          <button onClick={handleLogout}>Log Out</button>
+        </div>
+      )}
+
+      <h2>Posts</h2>
+      <ul>
+        {listings.map(listing => (
+          <li key={listing.id}>
+            <ListingCard listing={listing} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
