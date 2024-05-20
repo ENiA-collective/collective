@@ -1,4 +1,4 @@
-import UploadWidget from "../components/UploadWidget"
+import UploadWidget from "../components/buttons/UploadWidget"
 
 const AccountForm = ({ handleSubmit, formData, setFormData }) => {
 

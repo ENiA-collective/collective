@@ -34,7 +34,7 @@ const SignUpPage = () => {
 		if (!user) return setErrorText("Username taken")
 
 		setCurrentUser(user)
-		navigate("/")
+		navigate(-1)
 	}
 
 	return (

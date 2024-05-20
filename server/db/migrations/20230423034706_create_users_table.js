@@ -24,6 +24,7 @@ exports.up = (knex) => knex.schema.createTable('users', (table) => {
     table.timestamps(true, true); // makes a created_at and updated_at column
     table.point('location');
     table.string('image_src');
+    table.integer('order_count').defaultTo(0);
   })
   .createTable('orders', (table) => {
     table.increments('id').primary();

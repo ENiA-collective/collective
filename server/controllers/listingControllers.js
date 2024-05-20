@@ -1,4 +1,4 @@
-const Listing = require("../db/models/Listing") // Adjust the path as necessary
+const Listing = require("../db/models/Listing") 
 const { list } = require("../db/models/User")
 
 // Create a listing
@@ -18,7 +18,7 @@ exports.createListing = async (req, res) => {
 	} catch (error) {
 		res.status(500).send({ error: error.message })
 	}
-}
+};
 
 // List all listings
 exports.listAllListings = async (req, res) => {
@@ -58,14 +58,22 @@ exports.deleteListing = async (req, res) => {
 // Edit a listing
 exports.editListing = async (req, res) => {
 	const { id } = req.params
-	const { title, description } = req.body
+	const { title, description, image_url } = req.body
+	const { userId } = req.session;
 	try {
-		const updatedListing = await Listing.editPost(id, title, description)
-		res.send(updatedListing)
-	} catch (error) {
-		res.status(500).send({ error: error.message })
-	}
-}
+		const listing = await Listing.findById(id);
+		if (!listing) {
+		  return res.sendStatus(404);
+		}
+		if (listing.user_id !== userId) {
+		  return res.sendStatus(403);
+		}
+		const updatedListing = await Listing.editPost(id, title, description, image_url);
+		res.send(updatedListing);
+	  } catch (error) {
+		res.status(500).send({ error: error.message });
+	  }
+};
 
 // Mark a listing as unavailable
 exports.makeListingUnavailable = async (req, res) => {
@@ -87,4 +95,15 @@ exports.listAllListingsFromUser = async (req, res) => {
 	} catch (error) {
 		res.status(500).send({ error: error.message })
 	}
+}
+
+exports.incrementCount = async (req, res) => {
+  const { id } = req.params
+  const { newCount } = req.body
+  try {
+    const listing = await Listing.orderCounter(id, newCount)
+    res.send(listing)
+  } catch (error) {
+    res.status(500).send({error: error.message})
+  }
 }
