@@ -4,7 +4,7 @@ const ListingCard = ({ listing }) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate(`listings/${listing.id}`)
+    navigate(`/listings/${listing.id}`)
   }
 
   return <div onClick={handleClick}>

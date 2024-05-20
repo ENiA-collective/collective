@@ -58,7 +58,7 @@ export const makeUnavailable = async (id) =>
 // Fetch listings by user
 
 export const fetchListingsByUser = async (user_id) => {
-  const [listings, error] = await fetchHandler(`/api/listings/user/${user_id}`);
+  const [listings, error] = await fetchHandler(`${baseUrl}/user/${user_id}`);
   if (error) console.log(error);
   return listings || [];
 };
