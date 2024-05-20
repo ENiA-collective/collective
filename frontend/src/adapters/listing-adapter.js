@@ -55,8 +55,4 @@ export const updateCount = async (id, newCount) =>
 export const makeUnavailable = async (id) =>
   fetchHandler(`${baseUrl}/${id}/unavailable`, getPatchOptions());
 
-export const makeUnavailable = async (id) => (
-  fetchHandler(`${baseUrl}/${id}/unavailable`, getPatchOptions())
-)
-
 export default fetchListings;
