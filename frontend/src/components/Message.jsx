@@ -1,4 +1,5 @@
 const Message = ({text}) => {
+
   return (
     <div>
       <p>{text}</p>
@@ -7,3 +8,4 @@ const Message = ({text}) => {
 }
 
 export default Message;
+

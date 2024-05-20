@@ -1,4 +1,6 @@
+
 const Listing = require('../db/models/Listing');
+
 
 // Create a listing
 exports.createListing = async (req, res) => {
