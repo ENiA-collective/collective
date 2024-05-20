@@ -17,12 +17,15 @@ const EditListing = () => {
 	  image_src: "",
 	});
   // Fetch th elisting data on mount
+  const [isLoading, setIsLoading] = useState(true);
+
 	useEffect(() => {
 		const getListing = async () => {
 		  try {
 			const [listing, error] = await fetchListing(id);
 			if (error) {
 			  setErrorText(error.message);
+			  setIsLoading(false);
 			  return;
 			}
 			setFormData({
@@ -30,8 +33,10 @@ const EditListing = () => {
 			  description: listing.description,
 			  image_src: listing.image_src,
 			});
+			setIsLoading(false);
 		  } catch (error) {
 			setErrorText("Error fetching listing data.");
+			setIsLoading(false);
 		  }
 		};
 	
