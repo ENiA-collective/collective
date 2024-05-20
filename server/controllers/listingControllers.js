@@ -1,5 +1,4 @@
 const Listing = require("../db/models/Listing") 
-const { list } = require("../db/models/User")
 
 // Create a listing
 exports.createListing = async (req, res) => {
