@@ -42,7 +42,7 @@ const EditListing = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const [updatedListing, error] = await updateListing(id, formData);
+    const [error] = await updateListing(id, formData);
     if (error) {
       setErrorText(error.message);
     } else {

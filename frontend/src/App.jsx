@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Home';
 import SignUpPage from './pages/SignUp';
 import LoginPage from './pages/Login';
 import SiteHeadingAndNav from './components/SiteHeadingAndNav';
 import NotFoundPage from './pages/NotFound';
-import { CurrentUserContext, CurrentUserProvider } from './contexts/CurrentUserContext';
+import UserContext from './contexts/CurrentUserContext.jsx';
 import { checkForLoggedInUser } from './adapters/auth-adapter';
 import UserPage from './pages/User';
 import CreateListing from './pages/CreateListing.jsx'
@@ -23,7 +23,6 @@ export default function App() {
   }, [setCurrentUser]);
 
   return <>
-   <CurrentUserProvider>
     <SiteHeadingAndNav />
     <main>
       <Routes>
@@ -42,7 +41,5 @@ export default function App() {
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </main>
-    </CurrentUserProvider>
   </>
-  
 };

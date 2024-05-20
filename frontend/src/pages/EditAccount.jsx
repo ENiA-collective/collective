@@ -1,10 +1,10 @@
 //TODO: ...this is just a copy and paste of the sign up form! refactor to handle edits instead of creating
 //a brand new resource
 import { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 import { getUser, updateUser } from "../adapters/user-adapter";
-import EditProfileForm from "../components/EditProfileForm.jsx";
+import EditProfileForm from "../components/EditProfileForm";
 
 const EditAccount = () => {
   const navigate = useNavigate();
@@ -42,12 +42,12 @@ const EditAccount = () => {
     event.preventDefault();
     setErrorText("");
 
-    const [updatedUser, error] = await updateUser(currentUser.id, formData);
+    const [updatedUser, error] = await updateUser(id, formData);
     if (error) {
       setErrorText(error.message);
     } else {
       setCurrentUser(updatedUser);
-      navigate(`/users/${currentUser.id}`);
+      navigate(`/users/${id}`);
     }
   };
 
