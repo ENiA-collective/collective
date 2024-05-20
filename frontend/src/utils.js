@@ -36,3 +36,17 @@ export const fetchHandler = async (url, options = {}) => {
     return [null, error];
   }
 };
+
+export const readableDate = (timestamp) => {
+  const date = new Date(timestamp)
+  const options = {
+    weekday: 'short',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  }
+
+  return date.toLocaleString('en-US', options)
+}

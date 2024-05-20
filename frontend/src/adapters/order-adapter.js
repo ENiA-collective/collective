@@ -21,7 +21,9 @@ export const getMyGifts = async (user_id) => (
 export const getMyOrders = async (user_id) => (
   fetchHandler(`${baseUrl}/my-orders/${user_id}`)
 );
+
+export const fulfillOrder = async (order_id) => (
+  fetchHandler(`${baseUrl}/${order_id}`, getPatchOptions())
+)
 //todo:
-//see all orders from specific users
 //grab an order by id
-//fulfill order

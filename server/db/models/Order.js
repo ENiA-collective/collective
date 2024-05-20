@@ -60,6 +60,7 @@ class Order {
       SELECT *
       FROM orders
       WHERE getter_user_id=?
+      ORDER BY created_at DESC
       `;
 
     const { rows } = await knex.raw(query, [getter_user_id]);
@@ -70,7 +71,9 @@ class Order {
     const query = `
     SELECT *
     FROM orders
-    WHERE giver_user_id=?`;
+    WHERE giver_user_id=?
+    ORDER BY created_at DESC
+    `;
 
     const { rows } = await knex.raw(query, [giver_user_id]);
     return rows;
