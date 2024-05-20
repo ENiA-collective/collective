@@ -59,7 +59,7 @@ exports.deleteListing = async (req, res) => {
 // Edit a listing
 exports.editListing = async (req, res) => {
   const { id } = req.params;
-  const { title, description, image_url } = req.body;
+  const { title, description, image_src } = req.body;
   const { userId } = req.session;
   try {
     const listing = await Listing.findById(id);
@@ -73,7 +73,7 @@ exports.editListing = async (req, res) => {
       id,
       title,
       description,
-      image_url
+      image_src
     );
     res.send(updatedListing);
   } catch (error) {
