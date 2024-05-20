@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { createOrder } from "../../adapters/order-adapter";
+import { checkIfOrdered, createOrder } from "../../adapters/order-adapter";
 import { updateCount } from "../../adapters/listing-adapter";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -7,12 +7,21 @@ const RequestItem = ({ listing, setErrorText }) => {
   const { currentUser } = useContext(CurrentUserContext)
   const [count, setCount] = useState(0)
   const [buttonText, setButtonText] = useState(`Request Item - ${count} Request(s) Made`)
+  const [disableButton, setDisableButton] = useState(true)
   
   useEffect(() => {
     if (listing.order_count === 0 || listing.order_count) {
       setCount(listing.order_count)
-      console.log('useEffect', count)
     }
+
+    const checkIfUserOrdered = async () => {
+      if (!listing.id) return
+     const [isOrdered, error] = await checkIfOrdered(currentUser.id, listing.id)
+     if(error) return setErrorText(error.message)
+     setDisableButton(isOrdered)
+      
+    }
+    checkIfUserOrdered()
     
   }, [listing])
 
@@ -21,15 +30,13 @@ const RequestItem = ({ listing, setErrorText }) => {
     const incrementCount = async () => {
       const [updatedListing, error] = await updateCount(listing.id, count)
       if (error) setErrorText(error.message)
-      console.log('listing updated')
-      console.log(count)
     }
     incrementCount()
 
-    setButtonText(`Requested! - ${count} Other User(s) Requested`)
+    setButtonText(`Requested! - ${count} User(s) Requested`)
   }, [count])
 
-  useEffect(() => { setButtonText(`Requested! - ${count} Other User(s) Requested`) }, [count, buttonText])
+  useEffect(() => { setButtonText(`Requested! - ${count} User(s) Requested`) }, [count, buttonText, disableButton])
 
 
   const handleClick = async () => {
@@ -43,12 +50,13 @@ const RequestItem = ({ listing, setErrorText }) => {
     }
     const [order, error] = await createOrder(orderDetails)
     if(error) return setErrorText(error.message)
-    setButtonText(`Requested! - ${count} Other User(s) Requested`)
+    setButtonText(`Requested! - ${count} User(s) Requested`)
+    setDisableButton(true)
   }
 
 //implement a check to see if the user alr ordered the item
 
-  return <button type="button" onClick={handleClick}>{ buttonText }</button>
+  return <button type="button" onClick={handleClick} disabled={disableButton}>{ buttonText }</button>
 }
 
 export default RequestItem;
