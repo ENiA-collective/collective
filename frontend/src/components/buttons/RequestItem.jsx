@@ -12,7 +12,6 @@ const RequestItem = ({ listing, setErrorText }) => {
   useEffect(() => {
     if (listing.order_count === 0 || listing.order_count) {
       setCount(listing.order_count)
-      console.log('useEffect', count)
     }
 
     const checkIfUserOrdered = async () => {
@@ -20,7 +19,6 @@ const RequestItem = ({ listing, setErrorText }) => {
      const [isOrdered, error] = await checkIfOrdered(currentUser.id, listing.id)
      if(error) return setErrorText(error.message)
      setDisableButton(isOrdered)
-      console.log(isOrdered)
       
     }
     checkIfUserOrdered()
@@ -32,8 +30,6 @@ const RequestItem = ({ listing, setErrorText }) => {
     const incrementCount = async () => {
       const [updatedListing, error] = await updateCount(listing.id, count)
       if (error) setErrorText(error.message)
-      console.log('listing updated')
-      console.log(count)
     }
     incrementCount()
 
