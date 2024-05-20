@@ -13,12 +13,8 @@ import EditListing from './pages/EditListing.jsx';
 import About from './pages/About.jsx';
 import EditAccount from './pages/EditAccount.jsx';
 import Listing from './pages/Listing.jsx'
-<<<<<<< HEAD
-import MyGifts from './pages/MyGifts.jsx';
-=======
 import Orders from './pages/Orders.jsx';
 import Chat from './pages/Chat.jsx';
->>>>>>> main
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
@@ -38,13 +34,9 @@ export default function App() {
         <Route path='/post' element={<CreateListing />} />
         <Route path='/listings/:id' element={ <Listing /> } /> 
         <Route path='/listings/:id/edit' element={<EditListing />} />
-<<<<<<< HEAD
-        <Route path='/orders/my-gifts' element={<MyGifts />} />
-=======
         <Route path='/orders/my-gifts' element={<Orders receiving={false} />} />
         <Route path='/orders/my-orders' element={<Orders receiving={true} />} />
         <Route path='/chat/:order_id' element={<Chat />} />
->>>>>>> main
         <Route path='/about' element={<About />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

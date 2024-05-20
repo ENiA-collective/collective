@@ -6,10 +6,7 @@ import CurrentUserContext from "../contexts/CurrentUserContext";
 import UserLink from '../components/buttons/UserLink'
 import DeleteListing from "../components/buttons/DeleteListing";
 import RequestItem from "../components/buttons/RequestItem";
-<<<<<<< HEAD
-=======
 import { readableDate } from "../utils";
->>>>>>> main
 
 
 const Listing = () => {
@@ -38,23 +35,6 @@ const Listing = () => {
     loadUser();
   }, [listing])
 
-<<<<<<< HEAD
-  const readableDate = (timestamp) => {
-    const date = new Date(timestamp)
-    const options = {
-      weekday: 'short',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
-    }
-
-    return date.toLocaleString('en-US', options)
-  }
-
-=======
->>>>>>> main
   const handleEdit = () => {
     navigate(`/listings/${id}/edit`)
   }
@@ -69,10 +49,7 @@ const Listing = () => {
     {errorText && <p>{errorText}</p>}
     {currentUser.id === originalPoster.id ?
       <>
-<<<<<<< HEAD
-=======
         {listing.order_count && <button type="button" onClick={() => navigate(`/orders/my-gifts`)}>View Orders - {listing.order_count} Request(s) made!</button>}
->>>>>>> main
         <button type="button" onClick={handleEdit}>Edit Listing</button>
         <DeleteListing listingId={listing.id} setErrorText={setErrorText} />
       </>
