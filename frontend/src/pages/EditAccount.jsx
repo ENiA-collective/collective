@@ -18,8 +18,6 @@ const EditAccount = () => {
 		pfp_src: "",
 	})
 
-	if (currentUser) return <Navigate to='/' />
-
 	const handleSubmit = async event => {
 		event.preventDefault()
 		setErrorText("")

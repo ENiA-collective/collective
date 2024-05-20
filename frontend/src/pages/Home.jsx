@@ -8,12 +8,8 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchListingsData = async () => {
-      try {
-        const data = await fetchListings();
-        setListings(data);
-      } catch (error) {
-        console.error('Error fetching listings:', error);
-      }
+      const fetchedListings = await fetchListings();
+      setListings(fetchedListings);
     };
 
     fetchListingsData();
