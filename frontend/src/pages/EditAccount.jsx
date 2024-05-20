@@ -1,9 +1,9 @@
 //TODO: ...this is just a copy and paste of the sign up form! refactor to handle edits instead of creating
 //a brand new resource
 import { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
-import { updateUser, getUser } from "../adapters/user-adapter";
+import { getUser, updateUser } from "../adapters/user-adapter";
 import EditProfileForm from "../components/EditProfileForm.jsx";
 
 const EditAccount = () => {
@@ -18,21 +18,21 @@ const EditAccount = () => {
   });
 
   useEffect(() => {
-    const loadUserData = async () => {
+    const fetchData = async () => {
       const [user, error] = await getUser(id);
       if (error) {
         setErrorText(error.message);
       } else {
         setFormData({
-          display_name: user.display_name || "",
-          pronouns: user.pronouns || "",
-          bio: user.bio || "",
+          display_name: user.display_name,
+          pronouns: user.pronouns,
+          bio: user.bio,
         });
       }
     };
 
-    if (currentUser && currentUser.id === parseInt(id, 10)) {
-      loadUserData();
+    if (currentUser) {
+      fetchData();
     } else {
       navigate('/login');
     }
@@ -42,13 +42,7 @@ const EditAccount = () => {
     event.preventDefault();
     setErrorText("");
 
-    const updateData = {
-      display_name: formData.display_name,
-      pronouns: formData.pronouns,
-      bio: formData.bio,
-    };
-
-    const [updatedUser, error] = await updateUser(currentUser.id, updateData);
+    const [updatedUser, error] = await updateUser(currentUser.id, formData);
     if (error) {
       setErrorText(error.message);
     } else {
