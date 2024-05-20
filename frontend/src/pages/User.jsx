@@ -3,7 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
-import UpdateUsernameForm from "../components/UpdateUsernameForm";
+//import UpdateUsernameForm from "../components/UpdateUsernameForm";
 
 export default function UserPage() {
   const navigate = useNavigate();
@@ -32,27 +32,22 @@ export default function UserPage() {
   if (!userProfile && !errorText) return null;
   if (errorText) return <p>{errorText}</p>;
 
-  return (
-    <div>
-      <img alt="profile image" src={userProfile.pfp_src} />
-      <h1>{userProfile.display_name}</h1>
-      <p>{userProfile.username}</p>
-      <p>Pronouns: {userProfile.pronouns}</p>
-      <p>Bio: {userProfile.bio}</p>
-      <ul>
-        {userProfile.posts.map(post => (
-          <li key={post.id}>{post.content}</li>
-        ))}
-      </ul>
-      {isCurrentUserProfile && (
-        <>
-          <Link to={`/users/${id}/edit`}>
-            <button>Edit Profile</button>
-          </Link>
-          <button onClick={handleLogout}>Log Out</button>
-          <UpdateUsernameForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
-        </>
-      )}
-    </div>
-  );
+  // What parts of state would change if we altered our currentUser context?
+  // Ideally, this would update if we mutated it
+  // But we also have to consider that we may NOT be on the current users page
+  const profileUsername = isCurrentUserProfile ? currentUser.username : userProfile.username;
+
+  return <>
+    <h1>{profileUsername}</h1>
+    <img alt="profile image" src={userProfile.pfp_src} />
+    {!!isCurrentUserProfile && <button onClick={handleLogout}>Log Out</button>}
+    <p>If the user had any data, here it would be</p>
+    <p>Fake Bio or something</p>
+    <button type="button" onClick={() => navigate('/orders/my-gifts')}>Orders: Giving</button>
+    <button type="button" onClick={() => navigate('/orders/my-orders')}>Orders: Receiving</button>
+    {/* {
+      !!isCurrentUserProfile
+      && <UpdateUsernameForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
+    } */}
+  </>;
 }

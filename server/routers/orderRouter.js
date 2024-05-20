@@ -6,11 +6,17 @@ const orderRouter = express.Router();
 
 orderRouter.get('/', checkAuthentication, orderControllers.listAllOrders);
 orderRouter.post('/', checkAuthentication, orderControllers.createOrder);
+orderRouter.get('/check-if-ordered', orderControllers.checkIfOrderedByUser);
+orderRouter.get('/my-orders/:getter_user_id', checkAuthentication, orderControllers.listMyOrders);
+orderRouter.get('/my-gifts/:giver_user_id', checkAuthentication, orderControllers.listMyGifts); //ORDER MATTERS! do not change the order of these...
 orderRouter.get('/:id', checkAuthentication, orderControllers.getById);
 orderRouter.patch('/:id', checkAuthentication, orderControllers.fulfillOrder);
+<<<<<<< HEAD
 orderRouter.get('/my-orders', checkAuthentication, orderControllers.listMyOrders);
 orderRouter.get('/my-gifts', checkAuthentication, orderControllers.listMyGifts);
 orderRouter.get('/check-if-ordered', checkAuthentication, orderControllers.checkIfOrderedByUser )
+=======
+>>>>>>> main
 
 module.exports = orderRouter;
 

@@ -14,6 +14,10 @@ listingRouter.delete('/:id', checkAuthentication, listingControllers.deleteListi
 listingRouter.patch('/:id', checkAuthentication, listingControllers.editListing);
 listingRouter.patch('/:id/unavailable', checkAuthentication, listingControllers.makeListingUnavailable);
 listingRouter.patch('/:id/count', checkAuthentication, listingControllers.incrementCount)
+<<<<<<< HEAD
 listingRouter.get('/user/:user_id', listingControllers.listAllListingsFromUser);
+=======
+listingRouter.get('/user/:user_id', checkAuthentication, listingControllers.listAllListingsFromUser);
+>>>>>>> main
 
 module.exports = listingRouter;

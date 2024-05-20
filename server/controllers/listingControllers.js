@@ -1,5 +1,8 @@
 const Listing = require("../db/models/Listing") 
+<<<<<<< HEAD
 const { list } = require("../db/models/User")
+=======
+>>>>>>> main
 
 // Create a listing
 exports.createListing = async (req, res) => {

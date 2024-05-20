@@ -39,5 +39,12 @@ export const getListing = async (id) => fetchHandler(`${baseUrl}/${id}`);
 export const updateCount = async (id, newCount) => (
   fetchHandler(`${baseUrl}/${id}/count`, getPatchOptions({ id, newCount }))
 );
+<<<<<<< HEAD
+=======
+
+export const makeUnavailable = async (id) => (
+  fetchHandler(`${baseUrl}/${id}/unavailable`, getPatchOptions())
+)
+>>>>>>> main
 
 export default fetchListings;

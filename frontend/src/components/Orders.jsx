@@ -1,2 +1,0 @@
-//for viewing orders. a separate component and not an individual page because there's more than one order list
-//think - viewing all the orders you placed AND viewing all the orders that have been placed on items you posted
