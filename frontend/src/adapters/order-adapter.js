@@ -12,6 +12,7 @@ export const createOrder = async ({
     getPostOptions({ listing_id, giver_user_id, getter_user_id })
   );
 
+
 export const checkIfOrdered = async (user_id, listing_id) =>
   fetchHandler(
     `${baseUrl}/check-if-ordered?userId=${user_id}&listingId=${listing_id}`
@@ -25,5 +26,6 @@ export const getMyOrders = async (user_id) =>
 
 export const fulfillOrder = async (order_id) =>
   fetchHandler(`${baseUrl}/${order_id}`, getPatchOptions());
+
 //todo:
 //grab an order by id

@@ -62,7 +62,7 @@ class Listing {
 		return rows[0] // Returns the deleted listing
 	}
 
-	static async editPost(id, title, description, image_url) {
+	static async editPost(id, title, description, image_src) {
 		const query = `
         UPDATE listings 
 		SET title = ?, description = ?, image_src = ?, updated_at = ?
@@ -70,7 +70,7 @@ class Listing {
 		RETURNING *;
     `
     const timestamp = knex.fn.now()
-		const { rows } = await knex.raw(query, [title, description, image_url, timestamp, id]);
+		const { rows } = await knex.raw(query, [title, description, image_src, timestamp, id]);
 		return rows[0];
 	}
 
