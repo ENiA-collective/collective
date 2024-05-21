@@ -39,7 +39,7 @@ export default function UserPage() {
 
   if (!userProfile && !errorText) return null;
   if (errorText) return <p>{errorText}</p>;
-
+  console.log(userProfile)
   return (
     <div>
       <img alt="profile image" src={userProfile.pfp_src} />
@@ -48,6 +48,7 @@ export default function UserPage() {
       <p>{userProfile.pronouns}</p>
       <p>Joined: {readableDate(userProfile.created_at) }</p>
       <p>{userProfile.bio}</p>
+      
 
       {isCurrentUserProfile && (
         <div>

@@ -40,7 +40,7 @@ const SignUpPage = () => {
 	return (
 		<>
       <h1>Sign Up</h1>
-      <AccountForm handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} />
+      <AccountForm handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} newUser={true} />
 			{errorText && <p>{errorText}</p>}
 			<p>
 				Already have an account with us? <Link to='/login'>Log in!</Link>
