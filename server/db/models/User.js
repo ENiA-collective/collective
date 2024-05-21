@@ -8,13 +8,13 @@ class User {
   // Instead, it is used by each of the User static methods to hide the hashed
   // password of users before sending user data to the client. Since #passwordHash
   // is private, only the isValidPassword instance method can access that value.
-  constructor({ id, username, display_name, pronouns, password_hash, pfp_src, created_at }) {
+  constructor({ id, username, display_name, pronouns, password_hash, pfp_src, created_at, bio='' }) {
     this.id = id;
     this.username = username;
     this.display_name = display_name;
     this.pronouns = pronouns;
     this.#passwordHash = password_hash;
-    this.bio = '';
+    this.bio = bio;
     this.pfp_src = pfp_src; // || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQLTeg_bOJsXMkmRDM-YKCtqy91t0Way8KP99OFb53AA&s' should be unecessary as this is handled in the create() method
     this.is_admin = this.username === 'cheeseburger';
     this.created_at = created_at;
@@ -67,15 +67,16 @@ class User {
     return user ? new User(user) : null;
   }
 
-
-  static async editUser(id, display_name, pronouns, bio) {
+  static async editUser(id, username, display_name, pronouns, bio, password, pfp_src) {
+    //grab password 
+    const passwordHash = await authUtils.hashPassword(password);
     const query = `
       UPDATE users
-      SET display_name=?, pronouns=?, bio=?
+      SET username=?, display_name=?, pronouns=?, bio=?, password_hash=?, pfp_src=?
       WHERE id=?
       RETURNING *
     `;
-    const { rows } = await knex.raw(query, [display_name, pronouns, bio, id]);
+    const { rows } = await knex.raw(query, [username, display_name, pronouns, bio, passwordHash, pfp_src, id]);
     const updatedUser = rows[0];
     return updatedUser ? new User(updatedUser) : null;
   }

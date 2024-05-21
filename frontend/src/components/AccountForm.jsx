@@ -1,6 +1,6 @@
 import UploadWidget from "../components/buttons/UploadWidget";
 
-const AccountForm = ({ handleSubmit, formData, setFormData }) => {
+const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -21,10 +21,10 @@ const AccountForm = ({ handleSubmit, formData, setFormData }) => {
     <div className="max-w-xs bg-background overflow-hidden rounded-2xl text-text">
       <form
         onSubmit={handleSubmit}
-        aria-labelledby="create-heading"
+        aria-labelledby="form-heading"
         className="flex flex-col p-8 gap-4 text-center"
       >
-        <h2 id="create-heading" className="font-bold text-2xl">Create New User</h2>
+        <h2 id="form-heading" className="font-bold text-2xl">{newUser ? 'Create' : 'Edit' } Account</h2>
         <div className="form-container">
           <label htmlFor="username" className="sr-only">Username</label>
           <input
@@ -53,7 +53,7 @@ const AccountForm = ({ handleSubmit, formData, setFormData }) => {
             className="input"
           />
         </div>
-
+      
         <div className="form-container">
           <label htmlFor="pronouns" className="sr-only">Pronouns</label>
           <input
@@ -67,6 +67,16 @@ const AccountForm = ({ handleSubmit, formData, setFormData }) => {
             className="input"
           />
         </div>
+
+        { !newUser && <>
+        <label htmlFor='bio'>Bio</label>
+        <input
+          id='bio'
+          onChange={handleChange}
+          name='bio'
+          value={formData.bio} />
+        </>
+      }
 
         <div className="form-container">
           <label htmlFor="password" className="sr-only">Password</label>
