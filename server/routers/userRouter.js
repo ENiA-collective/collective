@@ -9,7 +9,7 @@ userRouter.post('/', userControllers.createUser);
 // These actions require users to be logged in (authentication)
 // Express lets us pass a piece of middleware to run for a specific endpoint
 userRouter.get('/', checkAuthentication, userControllers.listUsers);
-userRouter.get('/:id', checkAuthentication, userControllers.showUser);
+userRouter.get('/:id', userControllers.showUser);
 userRouter.patch('/:id', checkAuthentication, userControllers.updateUser);
 
 module.exports = userRouter;
