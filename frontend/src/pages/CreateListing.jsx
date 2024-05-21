@@ -58,9 +58,11 @@ const CreateListing = () => {
 	return (
 		<> {/*Replaced div with fragment as there's only two or 3 components here that do not
     need to be grouped together for styling*/}
-			<h1>List an Item</h1>
+	<div className="form">
+			<center>
       <ListingForm handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} />
-      {errorText && <p>{errorText}</p>}
+      {errorText && <p>{errorText}</p>} </center>
+	  </div>
 		</>
 	)
 }
