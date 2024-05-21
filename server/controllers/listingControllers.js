@@ -103,6 +103,16 @@ exports.listAllListingsFromUser = async (req, res) => {
   }
 };
 
+exports.listAllFromKeyword = async (req, res) => {
+  const { search_term } = req.params;
+  try {
+    const listings = await Listing.listAllFromKeyword(search_term);
+    res.send(listings);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
+
 exports.incrementCount = async (req, res) => {
   const { id } = req.params;
   const { newCount } = req.body;

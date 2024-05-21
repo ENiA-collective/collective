@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 import { logUserIn } from "../adapters/auth-adapter";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 
@@ -37,7 +37,7 @@ const LoginPage = () => {
         <button>Login</button>
       </form>
       {errorText && <p>{errorText}</p>}
-      <p>Don't have an account with us? <a href="/sign-up">Sign up!</a></p>
+      <p>Don't have an account with us? <Link to={'/sign-up'}>Sign Up!</Link></p>
     </>
   );
 };
