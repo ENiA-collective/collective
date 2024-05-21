@@ -1,9 +1,29 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        primary: {
+          DEFAULT: '#1AAF89',
+          dark: '#1F6356', //dont worry bout it
+        },
+        secondary: {
+          DEFAULT: '#1F6356',
+          dark: '#1AAF89', //dont worry bout it
+        },
+        background: {
+          DEFAULT: '#EDEDED',
+          dark: '#009EEB', //dont worry bout it
+        },
+        text: {
+          DEFAULT: '#241623',
+          dark: '#EDEDED', //dont worry bout it
+        },
+      },
+    },
   },
   plugins: [],
-}
-
+};

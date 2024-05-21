@@ -53,7 +53,9 @@ exports.up = (knex) =>
  * @returns { Promise<void> }
  */
 
-exports.down = (knex) => knex.schema.dropTable('messages')
-  .dropTable('orders')
-  .dropTable('listings')
-  .dropTable('users');
+exports.down = (knex) =>
+  knex.schema
+    .dropTable('messages')
+    .dropTable('orders')
+    .dropTable('listings')
+    .dropTable('users');

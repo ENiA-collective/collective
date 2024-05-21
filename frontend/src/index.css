@@ -1,11 +1,6 @@
-
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
 /* @tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 :root {
   --text: #241623;   /*dark purple */
@@ -55,8 +50,7 @@ nav a {
 }
 
 form {
-  padding: 1rem;
-  border: 1px solid #CCC;
+  padding: 5rem;
   width: 15rem;
   margin: 1rem auto;
 }
