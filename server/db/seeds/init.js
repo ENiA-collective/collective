@@ -18,12 +18,12 @@ exports.seed = async (knex) => {
   await knex.raw('ALTER SEQUENCE users_id_seq RESTART WITH 1');
 
 
-  await User.create('cheeseburger', 'password1', 'User One', 'they/them', '');
-  await User.create('user2', 'password2', 'User Two', 'she/her', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
-  await User.create('user3', 'password3', 'User Three', 'he/him', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
-  await User.create('user4', 'password4', 'User Four', 'they/them', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
-  await User.create('user5', 'password5', 'User Five', 'she/her', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
-  await User.create('user6', 'password6', 'User Six', 'he/him', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
+  await User.create('cheeseburger', 'cheeseburger', 'Beese Churger', 'they/them', '');
+  await User.create('nicole', 'nicole', 'Nicole!!', 'she/her', 'https://ca.slack-edge.com/TKZN62HDF-U05P4B24RTJ-ea65cd513e5d-512');
+  await User.create('aleoto', 'al', 'aleleoto', 'she/they', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
+  await User.create('epi', 'epi', 'Epi <3', 'she/her', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
+  await User.create('alpartner', 'password5', 'User Five', 'she/her', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
+  await User.create('u', 'password6', 'User Six', 'he/him', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
   await User.create('user7', 'password7', 'User Seven', 'they/them', 'https://fox4kc.com/wp-content/uploads/sites/16/2023/06/Worlds-Largest-Rubber-Duck.jpg?w=661');
 
   await Listing.create('Phaser Pistol', 'A powerful hand weapon for self-defense.', 3, 34.05, -118.24, 'https://i5.walmartimages.com/asr/d7731457-cabd-471e-bc4a-177225cbd3e8.b951330e628b23188f906cfe34c8e277.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF');
