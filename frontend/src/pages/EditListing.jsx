@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchListing, updateListing } from '../adapters/listing-adapter';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-
 import ListingForm from '../components/ListingForm';
 
 const EditListing = () => {

@@ -9,6 +9,7 @@ const checkAuthentication = require('../middleware/checkAuthentication');
 
 listingRouter.post('/', checkAuthentication, listingControllers.createListing);
 listingRouter.get('/', listingControllers.listAllListings);
+listingRouter.get('/search/:search_term', listingControllers.listAllFromKeyword)
 listingRouter.get('/:id', listingControllers.findListingById);
 
 listingRouter.delete(
