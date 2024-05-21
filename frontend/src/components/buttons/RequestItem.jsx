@@ -32,11 +32,12 @@ const RequestItem = ({ listing, setErrorText }) => {
       if (error) setErrorText(error.message)
     }
     incrementCount()
-
-    setButtonText(`Requested! - ${count} User(s) Requested`)
   }, [count])
 
-  useEffect(() => { setButtonText(`Requested! - ${count} User(s) Requested`) }, [count, buttonText, disableButton])
+  useEffect(() => { 
+    if (count === 0) return
+    setButtonText(`Requested! - ${count} User(s) Requested`)
+  }, [count, buttonText, disableButton])
 
 
   const handleClick = async () => {
@@ -50,7 +51,7 @@ const RequestItem = ({ listing, setErrorText }) => {
     }
     const [order, error] = await createOrder(orderDetails)
     if(error) return setErrorText(error.message)
-    setButtonText(`Requested! - ${count} User(s) Requested`)
+    setButtonText(`Requested! handleclick - ${count} User(s) Requested`)
     setDisableButton(true)
   }
 
