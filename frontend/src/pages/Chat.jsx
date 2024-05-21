@@ -14,53 +14,42 @@ import CurrentUserContext from '../contexts/CurrentUserContext';
     const [newMessage, setNewMessage] = useState('');
     const [errorText, setErrorText] = useState('')
 
-    const { id } = useParams;
+    const { order_id } = useParams();
 
     const {currentUser} = useContext(CurrentUserContext)
     useEffect(() => {
-      // Fetch messages from the server (replace with your backend endpoint)
-      // axios.get('/api/messages')
-      //   .then(response => setMessages(response.data))
-      //   .catch(error => console.error('Error fetching messages:', error));
       const loadConversation = async () => {
-        const [conversation, error] = await getConvo(id);
-        if (error) return setErrorText(error.message);
+        const conversation = await getConvo(order_id);
         setMessages(conversation)
       };
       loadConversation();
-    }, []);
+    }, [order_id]);
 
     const handleSendMessage = async () => {
-      const [newMsg, error] = await sendMessage(id, currentUser.id, newMessage);
+      const [newMsg, error] = await sendMessage(order_id, currentUser.id, newMessage);
       if (error) return setErrorText(error.message)
       setMessages([...messages, newMsg])
       setNewMessage('')
-      // Send the new message to the server (replace with your backend endpoint)
-      // axios.post('/api/messages', { text: newMessage })
-      //   .then(response => {
-      //     setMessages([...messages, response.data]);
-      //     setNewMessage('');
-      //   })
-      //   .catch(error => console.error('Error sending message:', error));
     };
 
     return (
       <>
         {/* would be really cool if it displayed actual order info but this is enough for now */}
-        <h1>Chat: Order #{id}</h1>
+        <h1>Chat: Order #{order_id}</h1>
         {errorText && <p>{ errorText}</p>}
         <div>
           {messages.map(message => (
-            <Message key={message.id} text={message.text} />
+            <Message key={message.id} message={message} />
           ))}
         </div>
         <div>
           <input
+            htmlFor="send-button"
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
           />
-          <button onClick={handleSendMessage}>Send</button>
+          <button id="send-button" onClick={handleSendMessage}>Send</button>
         </div>
       </>
     );

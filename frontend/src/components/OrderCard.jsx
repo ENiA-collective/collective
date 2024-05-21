@@ -65,7 +65,7 @@ const OrderCard = ({ order, receiving, setErrorText }) => {
     <h3>Status: { getStatus() }</h3>
     <img src={listing.image_src} />
     <p>{truncateDescription(listing.description)}</p>
-    <p>Requested By: <UserLink user={otherUser} /></p>
+    <p>Requested {receiving ? 'From:' : 'By:'} <UserLink user={otherUser} /></p>
     <p>Requested At: {readableDate(order.created_at)}</p>
     <button type="button" onClick={() => navigate(`/chat/${order.id}`)}>Chat</button>
     {!receiving && listing.available && <button type="button" onClick={handleFullfill}>{fulfillButtonText}</button>}

@@ -55,4 +55,12 @@ export const updateCount = async (id, newCount) =>
 export const makeUnavailable = async (id) =>
   fetchHandler(`${baseUrl}/${id}/unavailable`, getPatchOptions());
 
+// Fetch listings by user
+
+export const fetchListingsByUser = async (user_id) => {
+  const [listings, error] = await fetchHandler(`${baseUrl}/user/${user_id}`);
+  if (error) console.log(error);
+  return listings || [];
+};
+
 export default fetchListings;

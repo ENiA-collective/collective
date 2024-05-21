@@ -2,7 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchListing, updateListing } from '../adapters/listing-adapter';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import EditListingForm from '../components/EditListingForm';
+
+import ListingForm from '../components/ListingForm';
 
 const EditListing = () => {
   const { id } = useParams();
@@ -38,11 +39,11 @@ const EditListing = () => {
     } else {
       navigate('/login');
     }
-  }, [id, currentUser, navigate]);
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const [error] = await updateListing(id, formData);
+    const [updatedListing, error] = await updateListing(id, formData);
     if (error) {
       setErrorText(error.message);
     } else {
@@ -55,7 +56,7 @@ const EditListing = () => {
   return (
     <>
       <h1>Edit Listing</h1>
-      <EditListingForm handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} />
+      <ListingForm handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} />
       {errorText && <p>{errorText}</p>}
     </>
   );
