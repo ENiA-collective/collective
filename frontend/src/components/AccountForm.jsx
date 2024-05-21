@@ -1,89 +1,117 @@
-import UploadWidget from "../components/buttons/UploadWidget"
+import UploadWidget from "../components/buttons/UploadWidget";
 
 const AccountForm = ({ handleSubmit, formData, setFormData }) => {
 
-	const handleChange = event => {
-		const { name, value } = event.target
-		setFormData(prevData => ({
-			...prevData,
-			[name]: value,
-		}))
-	}
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-	const handleImageUpload = secure_url => {
-		setFormData(prevData => ({
-			...prevData,
-			pfp_src: secure_url,
-		}))
-	}
+  const handleImageUpload = secure_url => {
+    setFormData(prevData => ({
+      ...prevData,
+      pfp_src: secure_url,
+    }));
+  };
 
-	return (
-		<form onSubmit={handleSubmit} aria-labelledby='create-heading'>
-			<h2 id='create-heading'>Create New User</h2>
-			<label htmlFor='username'>Username</label>
-			<input
-				autoComplete='off'
-				type='text'
-				id='username'
-				name='username'
-				onChange={handleChange}
-				value={formData.username}
-				required
-			/>
+  return (
+    <div className="max-w-xs bg-background overflow-hidden rounded-2xl text-text">
+      <form
+        onSubmit={handleSubmit}
+        aria-labelledby="create-heading"
+        className="flex flex-col p-8 gap-4 text-center"
+      >
+        <h2 id="create-heading" className="font-bold text-2xl">Create New User</h2>
+        <div className="form-container">
+          <label htmlFor="username" className="sr-only">Username</label>
+          <input
+            autoComplete="off"
+            type="text"
+            id="username"
+            name="username"
+            onChange={handleChange}
+            value={formData.username}
+            required
+            placeholder="Username"
+            className="input"
+          />
+        </div>
 
-			<label htmlFor='display-name'>Display Name</label>
-			<input
-				autoComplete='off'
-				type='text'
-				id='display-name'
-				name='display_name'
-				onChange={handleChange}
-				value={formData.display_name}
-			/>
+        <div className="form-container">
+          <label htmlFor="display-name" className="sr-only">Display Name</label>
+          <input
+            autoComplete="off"
+            type="text"
+            id="display-name"
+            name="display_name"
+            onChange={handleChange}
+            value={formData.display_name}
+            placeholder="Display Name"
+            className="input"
+          />
+        </div>
 
-			<label htmlFor='pronouns'>Pronouns</label>
-			<input
-				autoComplete='off'
-				type='text'
-				id='pronouns'
-				name='pronouns'
-				onChange={handleChange}
-				value={formData.pronouns}
-			/>
+        <div className="form-container">
+          <label htmlFor="pronouns" className="sr-only">Pronouns</label>
+          <input
+            autoComplete="off"
+            type="text"
+            id="pronouns"
+            name="pronouns"
+            onChange={handleChange}
+            value={formData.pronouns}
+            placeholder="Pronouns"
+            className="input"
+          />
+        </div>
 
-			<label htmlFor='password'>Password</label>
-			<input
-				autoComplete='off'
-				type='password'
-				id='password'
-				name='password'
-				onChange={handleChange}
-				value={formData.password}
-				required
-			/>
+        <div className="form-container">
+          <label htmlFor="password" className="sr-only">Password</label>
+          <input
+            autoComplete="off"
+            type="password"
+            id="password"
+            name="password"
+            onChange={handleChange}
+            value={formData.password}
+            required
+            placeholder="Password"
+            className="input"
+          />
+        </div>
 
-			<label htmlFor='confirm-password'>Confirm Password</label>
-			<input
-				autoComplete='off'
-				type='password'
-				id='confirm-password'
-				name='confirmPassword'
-				onChange={handleChange}
-				value={formData.confirmPassword}
-				required
-			/>
+        <div className="form-container">
+          <label htmlFor="confirm-password" className="sr-only">Confirm Password</label>
+          <input
+            autoComplete="off"
+            type="password"
+            id="confirm-password"
+            name="confirmPassword"
+            onChange={handleChange}
+            value={formData.confirmPassword}
+            required
+            placeholder="Confirm Password"
+            className="input"
+          />
+        </div>
 
-			<label htmlFor='profile-picture'>Profile Picture:</label>
-			<UploadWidget id='profile-picture' onUpload={handleImageUpload} />
+        <div className="form-container">
+          <label htmlFor="profile-picture" className="block text-sm font-medium text-text">Profile Picture:</label>
+          <UploadWidget id="profile-picture" onUpload={handleImageUpload} />
+        </div>
 
-			{/* In reality, we'd want a LOT more validation on signup, so add more things if you have time
-            <label htmlFor="password-confirm">Password Confirm</label>
-            <input autoComplete="off" type="password" id="password-confirm" name="passwordConfirm" />
-        */}
+        <button
+          type="submit"
+          className="bg-text text-white rounded-full font-semibold text-lg px-6 py-3 cursor-pointer transition-all duration-300 ease-in-out border border-black shadow-none hover:-translate-y-1 hover:-translate-x-0.5 hover:shadow-[2px_5px_0_0_black] active:translate-y-0.5 active:translate-x-0.25 active:shadow-none"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+};
 
-			<button>Submit</button>
-		</form>
-	)
-}
-
-export default AccountForm
+export default AccountForm;
