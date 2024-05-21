@@ -10,6 +10,7 @@ const checkAuthentication = require('../middleware/checkAuthentication');
 listingRouter.post('/', checkAuthentication, listingControllers.createListing);
 listingRouter.get('/', listingControllers.listAllListings);
 listingRouter.get('/:id', listingControllers.findListingById);
+
 listingRouter.delete(
   '/:id',
   checkAuthentication,
@@ -35,5 +36,6 @@ listingRouter.get(
   checkAuthentication,
   listingControllers.listAllListingsFromUser
 );
+
 
 module.exports = listingRouter;

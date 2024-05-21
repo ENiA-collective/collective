@@ -1,4 +1,9 @@
+
+//for viewing orders. a separate component and not an individual page because there's more than one order list
+//think - viewing all the orders you placed AND viewing all the orders that have been placed on items you postedimport { useEffect, useState } from "react";
+
 import { useEffect, useState } from "react";
+
 import { fetchListing, makeUnavailable } from "../adapters/listing-adapter";
 import { getUser } from "../adapters/user-adapter";
 import { readableDate } from "../utils";
@@ -60,7 +65,7 @@ const OrderCard = ({ order, receiving, setErrorText }) => {
     <h3>Status: { getStatus() }</h3>
     <img src={listing.image_src} />
     <p>{truncateDescription(listing.description)}</p>
-    <p>Requested By: <UserLink user={otherUser} /></p>
+    <p>Requested {receiving ? 'From:' : 'By:'} <UserLink user={otherUser} /></p>
     <p>Requested At: {readableDate(order.created_at)}</p>
     <button type="button" onClick={() => navigate(`/chat/${order.id}`)}>Chat</button>
     {!receiving && listing.available && <button type="button" onClick={handleFullfill}>{fulfillButtonText}</button>}

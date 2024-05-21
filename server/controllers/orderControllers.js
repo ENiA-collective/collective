@@ -36,6 +36,7 @@ exports.listAllOrders = async (req, res) => {
 };
 
 exports.checkIfOrderedByUser = async (req, res) => {
+
   const { userId, listingId } = req.query;
   try {
     const orders = await Order.checkIfUserOrdered(userId, listingId);
@@ -58,17 +59,20 @@ exports.getById = async (req, res) => {
 // List orders by getter user ID
 exports.listMyOrders = async (req, res) => {
   const { getter_user_id } = req.params;
+
   try {
     const orders = await Order.listMyOrders(getter_user_id);
     res.send(orders);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
+
 };
 
 // List orders by giver user ID
 exports.listMyGifts = async (req, res) => {
   const { giver_user_id } = req.params;
+
   try {
     const gifts = await Order.listMyGifts(giver_user_id);
     res.send(gifts);
@@ -76,3 +80,4 @@ exports.listMyGifts = async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 };
+
