@@ -1,13 +1,14 @@
 import UploadWidget from "../components/buttons/UploadWidget"
 
-const AccountForm = ({ handleSubmit, formData, setFormData }) => {
+const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
 
 	const handleChange = event => {
 		const { name, value } = event.target
 		setFormData(prevData => ({
 			...prevData,
 			[name]: value,
-		}))
+    }))
+    console.log(formData)
 	}
 
 	const handleImageUpload = secure_url => {
@@ -18,8 +19,8 @@ const AccountForm = ({ handleSubmit, formData, setFormData }) => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} aria-labelledby='create-heading'>
-			<h2 id='create-heading'>Create New User</h2>
+		<form onSubmit={handleSubmit} aria-labelledby='form-heading'>
+      <h2 id='form-heading'>{newUser ? 'Create' : 'Edit' } Account</h2>
 			<label htmlFor='username'>Username</label>
 			<input
 				autoComplete='off'
@@ -49,7 +50,17 @@ const AccountForm = ({ handleSubmit, formData, setFormData }) => {
 				name='pronouns'
 				onChange={handleChange}
 				value={formData.pronouns}
-			/>
+      />
+      
+      { !newUser && <>
+        <label htmlFor='bio'>Bio</label>
+        <input
+          id='bio'
+          onChange={handleChange}
+          name='bio'
+          value={formData.bio} />
+        </>
+      }
 
 			<label htmlFor='password'>Password</label>
 			<input
