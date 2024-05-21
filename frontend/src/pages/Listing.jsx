@@ -54,7 +54,7 @@ const Listing = () => {
     <p>Posted by: <UserLink user={ originalPoster} /></p>
     <p>Description: {listing.description}</p>
     {errorText && <p>{errorText}</p>}
-    {userObj === originalPoster.id ?
+    {userObj.id === originalPoster.id ?
       <>
         <button type="button" onClick={() => navigate(`/orders/my-gifts`)}>View Orders - {listing.order_count} Request(s) made!</button>
         <button type="button" onClick={handleEdit}>Edit Listing</button>
