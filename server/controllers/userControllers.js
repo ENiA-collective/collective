@@ -30,8 +30,6 @@ exports.updateUser = async (req, res) => {
   const { id } = req.params;
 
   const usernameTaken = await User.findByUsername(username);
-  console.log(usernameTaken)
-  console.log(usernameTaken.id, id)
   if (usernameTaken && usernameTaken.id !== parseInt(id)) return res.send(false); // if users choose not to edit their username, they can keep it
   // Not only do users need to be logged in to update a user, they
   // need to be authorized to perform this action for this particular
