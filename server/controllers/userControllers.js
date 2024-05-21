@@ -26,15 +26,17 @@ exports.showUser = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-  const { display_name, pronouns, bio } = req.body;
+  const { username, display_name, pronouns, bio, password, pfp_src } = req.body;
   const { id } = req.params;
 
+  const usernameTaken = await User.findByUsername(username);
+  if (usernameTaken && usernameTaken.id !== parseInt(id)) return res.send(false); // if users choose not to edit their username, they can keep it
   // Not only do users need to be logged in to update a user, they
   // need to be authorized to perform this action for this particular
   // user (users should only be able to change their own profiles)
   if (!isAuthorized(id, req.session)) return res.sendStatus(403);
 
-  const updatedUser = await User.update(id, display_name, pronouns, bio);
+  const updatedUser = await User.editUser(id, username, display_name, pronouns, bio, password, pfp_src);
   if (!updatedUser) return res.sendStatus(404);
   res.send(updatedUser);
 };
