@@ -4,6 +4,7 @@ import { fetchListing, updateListing } from '../adapters/listing-adapter';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import ListingForm from '../components/ListingForm';
 
+
 const EditListing = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const EditListing = () => {
     } else {
       navigate('/login');
     }
-  }, [id]);
+  }, [id, currentUser, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
