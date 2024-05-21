@@ -15,6 +15,7 @@ import EditAccount from './pages/EditAccount.jsx';
 import Listing from './pages/Listing.jsx'
 import Orders from './pages/Orders.jsx';
 import Chat from './pages/Chat.jsx';
+import './index.css'
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
