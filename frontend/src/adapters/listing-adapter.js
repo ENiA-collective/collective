@@ -63,4 +63,11 @@ export const fetchListingsByUser = async (user_id) => {
   return listings || [];
 };
 
+export const searchListings = async (keyword) => {
+  const [listings, error] = await fetchHandler(`${baseUrl}/search/${keyword}`)
+  //this probably won't handle spaces well...
+  if (error) console.log(error)
+  return listings || []
+}
+
 export default fetchListings;

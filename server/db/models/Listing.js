@@ -94,6 +94,17 @@ class Listing {
 		const { rows } = await knex.raw(query, [user_id])
 		return rows;
   }
+
+  static async listAllFromKeyword(keyword) {
+    const query = `
+      SELECT *
+      FROM listings
+      WHERE title ILIKE ? OR description ILIKE ?;
+    `
+    const searchTerm = `%${keyword}%`
+    const { rows } = await knex.raw(query, [searchTerm, searchTerm])
+    return rows
+  }
   
   static async orderCounter(id, newCount) {
     const query = `
