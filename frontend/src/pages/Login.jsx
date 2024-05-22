@@ -29,10 +29,10 @@ const LoginPage = () => {
       </div>
         <h2 id="login-heading">Login</h2>
         <label htmlFor="username">Username</label>
-        <input type="text" autoComplete="username" id="username" name="username" required/>
+        <input type="text" autoComplete="username" id="username" name="username" required maxLength={50}/>
 
         <label htmlFor="password">Password</label>
-        <input type="password" autoComplete="current-password" id="password" name="password" required />
+        <input type="password" autoComplete="current-password" id="password" name="password" required maxLength={50} />
 
         <button>Login</button>
       </form>
