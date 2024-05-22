@@ -20,7 +20,6 @@ const ListingForm = ({ handleSubmit, formData, setFormData }) => {
   return (
     <div className="form-wrapper max-w-xs bg-background overflow-hidden rounded-2xl text-text">
       <form onSubmit={handleSubmit} className="flex flex-col p-8 gap-4 text-center">
-        <h2 className="font-bold text-2xl">Create New Listing</h2>
         <div className="form-container">
           <label htmlFor="title" className="sr-only">Title</label>
           <input
