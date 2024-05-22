@@ -21,11 +21,26 @@ const Message = ({ message }) => {
   //you can add a scaled down pfp if you'd like
   return (
     <div>
-      <UserLink user={sender} />
-      <p>{readableDate(message.created_at) }</p>
-      <p>{message.message}</p>
-      {errorText && <p>{ errorText }</p>}
-    </div>
+
+      <div className={sender.id === currentUser.id ? 'chat chat-end' : 'chat chat-start'}>
+        <div className="chat-image avatar">
+         <div className="w-10 rounded-full">
+           <img alt="profile picture" src={sender.pfp_src} />
+         </div>
+        </div>
+        
+        <div className="chat-header">
+          <UserLink user={sender} />
+          <p className="text-xs opacity-50">{readableDate(message.created_at) }</p>
+        </div>
+        <div className="chat-bubble chat-bubble-primary">
+          {message.message}
+        </div>
+      </div>
+
+      {errorText && <p>{errorText}</p>}
+      
+   </div>
   );
 }
 
