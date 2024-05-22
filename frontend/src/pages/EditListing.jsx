@@ -55,7 +55,7 @@ const EditListing = () => {
 
   return (
     <>
-      <h1>Edit Listing</h1>
+      <h1 className="header">Edit Listing</h1>
       <ListingForm handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} />
       {errorText && <p>{errorText}</p>}
     </>
