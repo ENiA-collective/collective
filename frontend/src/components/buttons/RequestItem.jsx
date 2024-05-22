@@ -57,7 +57,7 @@ const RequestItem = ({ listing, setErrorText }) => {
       type="button"
       onClick={handleClick}
       disabled={disableButton}
-      className={`bg-white text-text rounded-full font-semibold text-lg px-6 py-3 cursor-pointer transition-all duration-300 ease-in-out border border-black shadow-none ${disableButton ? 'opacity-50 cursor-not-allowed' : 'hover:transform hover:translate-y-[-4px] hover:translate-x-[-2px] hover:shadow-[2px_5px_0_0_black] active:transform active:translate-y-[2px] active:translate-x-[1px] active:shadow-none'}`}
+      className={`bg-secondary text-text rounded-full font-semibold text-lg px-6 py-3 cursor-pointer transition-all duration-300 ease-in-out border border-black shadow-none ${disableButton ? 'opacity-50 cursor-not-allowed' : 'hover:transform hover:translate-y-[-4px] hover:translate-x-[-2px] hover:shadow-[2px_5px_0_0_black] active:transform active:translate-y-[2px] active:translate-x-[1px] active:shadow-none'}`}
     >
       {buttonText}
     </button>
