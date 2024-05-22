@@ -48,7 +48,7 @@ const RequestItem = ({ listing, setErrorText }) => {
     };
     const [order, error] = await createOrder(orderDetails);
     if (error) return setErrorText(error.message);
-    setButtonText(`Requested! - ${count + 1} User(s) Requested handle click`);
+    setButtonText(`Requested! - ${count + 1} User(s) Requested`);
     setDisableButton(true);
   };
 
