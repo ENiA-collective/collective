@@ -7,7 +7,7 @@ const NotFoundPage = () => {
     <div>
       <h1 className="header">404 - Page Not Found</h1> {/* todo: make it render the actual status code */}
       <center><p>This URL does not exist.</p>
-      <Link to="/">Redirect to Home?</Link></center>
+      <Link to="/"><u>Redirect to Home?</u></Link></center>
     </div>
   );
 };
