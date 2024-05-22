@@ -18,7 +18,7 @@ const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
   };
 
   return (
-    <div className="max-w-xs bg-background overflow-hidden rounded-2xl text-text">
+    <div className="form-wrapper max-w-xs bg-background overflow-hidden rounded-2xl text-text">
       <form
         onSubmit={handleSubmit}
         aria-labelledby="form-heading"
