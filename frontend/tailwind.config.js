@@ -16,7 +16,7 @@ export default {
         },
         background: {
           DEFAULT: '#EDEDED',
-          dark: '#009EEB', //dont worry bout it
+          dark: '#24162', //dont worry bout it
         },
         text: {
           DEFAULT: '#241623',
