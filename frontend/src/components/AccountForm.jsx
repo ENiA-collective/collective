@@ -37,6 +37,7 @@ const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
             required
             placeholder="Username"
             className="input"
+            maxLength={50}
           />
         </div>
 
@@ -51,6 +52,7 @@ const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
             value={formData.display_name}
             placeholder="Display Name"
             className="input"
+            maxLength={50}
           />
         </div>
       
@@ -65,16 +67,20 @@ const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
             value={formData.pronouns}
             placeholder="Pronouns"
             className="input"
+            maxLength={50}
           />
         </div>
 
         { !newUser && <>
         <label htmlFor='bio'>Bio</label>
-        <input
+        <textarea
           id='bio'
           onChange={handleChange}
           name='bio'
-          value={formData.bio} />
+          value={formData.bio}
+          maxLength={250}
+          rows="4" />
+          
         </>
       }
 
@@ -90,6 +96,7 @@ const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
             required
             placeholder="Password"
             className="input"
+            maxLength={50}
           />
         </div>
 
@@ -105,6 +112,7 @@ const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
             required
             placeholder="Confirm Password"
             className="input"
+            maxLength={50}
           />
         </div>
 

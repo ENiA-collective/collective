@@ -34,6 +34,7 @@ const RequestItem = ({ listing, setErrorText }) => {
 
   useEffect(() => {
     if (count === 0) return;
+    if (disableButton) return setButtonText(`Request Item - ${count} Request(s) Made`);
     setButtonText(`Requested! - ${count} User(s) Requested`);
   }, [count]);
 
@@ -47,7 +48,7 @@ const RequestItem = ({ listing, setErrorText }) => {
     };
     const [order, error] = await createOrder(orderDetails);
     if (error) return setErrorText(error.message);
-    setButtonText(`Requested! - ${count + 1} User(s) Requested`);
+    setButtonText(`Requested! - ${count + 1} User(s) Requested handle click`);
     setDisableButton(true);
   };
 

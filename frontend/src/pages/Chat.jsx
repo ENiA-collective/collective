@@ -48,6 +48,7 @@ import CurrentUserContext from '../contexts/CurrentUserContext';
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
+            maxLength={250}
           />
           <button id="send-button" onClick={handleSendMessage}>Send</button>
         </div>

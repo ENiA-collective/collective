@@ -32,6 +32,7 @@ const ListingForm = ({ handleSubmit, formData, setFormData }) => {
             required
             placeholder="Title"
             className="input"
+            maxLength={50}
           />
         </div>
 
@@ -46,6 +47,7 @@ const ListingForm = ({ handleSubmit, formData, setFormData }) => {
             placeholder="Item Description"
             className="input textarea"
             rows="4" 
+            maxLength={250}
           />
         </div>
 
