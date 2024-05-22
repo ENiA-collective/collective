@@ -71,3 +71,4 @@ export const searchListings = async (keyword) => {
 }
 
 export default fetchListings;
+
