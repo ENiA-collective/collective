@@ -39,12 +39,13 @@ const SignUpPage = () => {
 
 	return (
 		<>
-      <h1>Sign Up</h1>
+      <center>
       <AccountForm handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} newUser={true} />
 			{errorText && <p>{errorText}</p>}
 			<p>
 				Already have an account with us? <Link to='/login'>Log in!</Link>
 			</p>
+		</center>
 		</>
 	)
 }
