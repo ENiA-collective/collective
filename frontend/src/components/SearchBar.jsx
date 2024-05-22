@@ -5,7 +5,7 @@ const SearchBar = ({ handleSearch }) => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <label htmlFor="search-bar">Search: </label>
+      {/* <label htmlFor="search-bar">Search: </label> */}
       <input
         id="search-bar"
         onChange={(e) => setQuery(e.target.value)}
