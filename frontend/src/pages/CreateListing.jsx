@@ -60,6 +60,7 @@ const CreateListing = () => {
     need to be grouped together for styling*/}
 	<div className="form">
 			<center>
+				<h1 className="header">Create New Listing</h1>
       <ListingForm handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} />
       {errorText && <p>{errorText}</p>} </center>
 	  </div>

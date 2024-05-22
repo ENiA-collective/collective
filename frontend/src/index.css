@@ -69,6 +69,14 @@ form {
 
 .form-wrapper {
   padding: 10px;
-  margin: 50px auto;
+  margin: 20px auto;
   box-shadow: 0 2px 4px
+}
+
+.header {
+  text-align: center;
+  font-weight: bold;
+  padding: 60px 10px 10px 10px;
+  margin: 10px auto;
+  font-size: 24px;
 }
