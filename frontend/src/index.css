@@ -51,7 +51,7 @@ nav ul {
 
 nav a {
   display: block;
-  color: #FFF;
+  /* color: #FFF; */
 }
 
 form {
@@ -62,13 +62,21 @@ form {
 
 /* automatically added by NavLink component */
 .active {
-  color: #241623;;
+  /* color: #241623;; */
   font-weight: bold;
-  font-style: italic;
+  text-decoration: underline;
 }
 
 .form-wrapper {
   padding: 10px;
-  margin: 50px auto;
+  margin: 20px auto;
   box-shadow: 0 2px 4px
+}
+
+.header {
+  text-align: center;
+  font-weight: bold;
+  padding: 60px 10px 10px 10px;
+  margin: 10px auto;
+  font-size: 24px;
 }
