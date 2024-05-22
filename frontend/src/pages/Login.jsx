@@ -37,7 +37,7 @@ const LoginPage = () => {
         <button>Login</button>
       </form>
       {errorText && <p>{errorText}</p>}
-      <p>Don't have an account with us? <Link to={'/sign-up'}>Sign Up!</Link></p>
+      <p>Don't have an account with us? <Link to={'/signup'}>Sign Up!</Link></p>
     </>
   );
 };
