@@ -25,15 +25,15 @@ class User {
     authUtils.isValidPassword(password, this.#passwordHash)
   );
 
-  static async create(username, password, display_name, pronouns, pfp_src) {
+  static async create(username, password, display_name, pronouns, pfp_src, bio='') {
     
     const passwordHash = await authUtils.hashPassword(password);
     const is_admin = username === 'cheeseburger';
     const profilePicSrc = pfp_src || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQLTeg_bOJsXMkmRDM-YKCtqy91t0Way8KP99OFb53AA&s';
 
     const query = `
-      INSERT INTO users (username, password_hash, display_name, pronouns, pfp_src, is_admin)
-      VALUES (?, ?, ?, ?, ?, ?)
+      INSERT INTO users (username, password_hash, display_name, pronouns, pfp_src, is_admin, bio)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
       RETURNING *
       `;
     const { rows } = await knex.raw(query, [
@@ -42,7 +42,9 @@ class User {
       display_name,
       pronouns,
       profilePicSrc,
-      is_admin]);
+      is_admin,
+      bio
+    ]);
     const user = rows[0];
     return new User(user);
   }
