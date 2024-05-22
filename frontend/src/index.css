@@ -1,10 +1,22 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*/
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --text: #241623;    /*dark purple */
+  --secondary: #1aaf89; /*light green */
+  --primary: #1f6356; /*dark green */
+  --background: #ededed; /*alabaster */
+}
 
 body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
+  background-color: #ededed;
 }
 
 input, label {
@@ -20,7 +32,6 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  background: #000;
 }
 
 #logo {
@@ -51,7 +62,7 @@ form {
 
 /* automatically added by NavLink component */
 .active {
-  color: #EEBC32;
+  color: #241623;;
   font-weight: bold;
   font-style: italic;
 }

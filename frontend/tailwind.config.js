@@ -7,11 +7,11 @@ export default {
         transparent: 'transparent',
         current: 'currentColor',
         primary: {
-          DEFAULT: '#1AAF89',
+          DEFAULT: '#1f6356;',
           dark: '#1F6356', //dont worry bout it
         },
         secondary: {
-          DEFAULT: '#1F6356',
+          DEFAULT: '#1aaf89;',
           dark: '#1AAF89', //dont worry bout it
         },
         background: {
