@@ -6,14 +6,14 @@ export default function SiteHeadingAndNav() {
   const { currentUser } = useContext(CurrentUserContext);
 
   return (
-    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-4 dark:bg-neutral-800">
+    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-primary text-sm py-4 dark:bg-primary">
       <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" aria-label="Global">
         <div className="flex items-center justify-between">
-          <a className="flex-none text-xl font-semibold dark:text-white" href="/">Collective</a>
+          <a className="flex-none text-xl font-semibold dark:text-secondary" href="/">Collective</a>
           <div className="sm:hidden">
             <button
               type="button"
-              className="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-white dark:hover:bg-white/10"
+              className="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-primary text-text shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-primary dark:text-secondary dark:hover:bg-white/10"
               data-hs-collapse="#navbar-with-collapse"
               aria-controls="navbar-with-collapse"
               aria-label="Toggle navigation"
@@ -32,17 +32,17 @@ export default function SiteHeadingAndNav() {
         </div>
         <div id="navbar-with-collapse" className="hidden transition-all duration-[0.1ms] overflow-hidden basis-full grow sm:block">
           <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-            <NavLink className="font-medium text-blue-500" to="/">Home</NavLink>
-            <NavLink className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" to="/about">About</NavLink>
+            <NavLink className="font-medium text-secondary" to="/">Home</NavLink>
+            <NavLink className="font-medium text-secondary hover:text-primary dark:text-secondary dark:hover:text-primary" to="/about">About</NavLink>
             {currentUser ? (
               <>
-                <NavLink className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" to="/post">Post</NavLink>
-                <NavLink className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" to={`/users/${currentUser.id}`}>{currentUser.username}</NavLink>
+                <NavLink className="font-medium text-secondary hover:text-primary dark:text-secondary dark:hover:text-primary" to="/post">Post</NavLink>
+                <NavLink className="font-medium text-secondary hover:text-primary dark:text-secondary dark:hover:text-primary" to={`/users/${currentUser.id}`}>{currentUser.username}</NavLink>
               </>
             ) : (
               <>
-                <NavLink className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" to="/login">Login</NavLink>
-                <NavLink className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" to="/signup">Sign Up</NavLink>
+                <NavLink className="font-medium text-secondary hover:text-primary dark:text-secondary dark:hover:text-primary" to="/login">Login</NavLink>
+                <NavLink className="font-medium text-secondary hover:text-primary dark:text-secondary dark:hover:text-primary" to="/signup">Sign Up</NavLink>
               </>
             )}
           </div>

@@ -8,8 +8,8 @@
 
 :root {
   --text: #241623;    /*dark purple */
-  --primary: #1aaf89; /*light green */
-  --secondary: #1f6356; /*dark green */
+  --secondary: #1aaf89; /*light green */
+  --primary: #1f6356; /*dark green */
   --background: #ededed; /*alabaster */
 }
 
@@ -32,7 +32,6 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  background: #1f6356;
 }
 
 #logo {
