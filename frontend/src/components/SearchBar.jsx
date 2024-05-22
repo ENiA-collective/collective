@@ -10,6 +10,7 @@ const SearchBar = ({handleSearch}) => {
       onChange={(e) => setQuery(e.target.value)}
       value={query}
       required
+      maxLength={250}
     />
     <button onClick={() => handleSearch(query)}>Search</button>
   </>;
