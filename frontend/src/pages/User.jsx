@@ -41,26 +41,29 @@ export default function UserPage() {
   if (errorText) return <p>{errorText}</p>;
   console.log(userProfile)
   return (
-    <div>
-      <img alt="profile image" src={userProfile.pfp_src} />
-      <h1>{userProfile.display_name}</h1>
-      <h2>@{userProfile.username}</h2>
-      <p>{userProfile.pronouns}</p>
-      <p>Joined: {readableDate(userProfile.created_at) }</p>
-      <p>{userProfile.bio}</p>
-      
+    <div className="container mx-auto p-4">
+      <div className="flex items-center space-x-4 mb-4">
+        <img alt="profile image" src={userProfile.pfp_src} className="w-24 h-24 rounded-full" />
+        <div>
+          <h1 className="text-2xl font-semibold">{userProfile.display_name}</h1>
+          <h2 className="text-xl text-gray-600">@{userProfile.username}</h2>
+          <p className="text-gray-600">{userProfile.pronouns}</p>
+          <p className="text-gray-600">Joined: {readableDate(userProfile.created_at)}</p>
+        </div>
+      </div>
+      <p className="mb-4">{userProfile.bio}</p>
 
       {isCurrentUserProfile && (
-        <div>
-          <button onClick={() => navigate(`/users/${id}/edit`)}>Edit Profile</button>
-          <button onClick={handleLogout}>Log Out</button>
-          <button type="button" onClick={() => navigate('/orders/my-gifts')}>Orders: Giving</button>
-          <button type="button" onClick={() => navigate('/orders/my-orders')}>Orders: Receiving</button>
+        <div className="flex space-x-2 mb-4">
+          <button onClick={() => navigate(`/users/${id}/edit`)} className="px-4 py-2 bg-primary text-white rounded hover:bg-secondary">Edit Profile</button>
+          <button onClick={handleLogout} className="px-4 py-2 bg-primary text-white rounded hover:bg-secondary">Log Out</button>
+          <button type="button" onClick={() => navigate('/orders/my-gifts')} className="px-4 py-2 bg-primary text-white rounded hover:bg-secondary">Orders: Giving</button>
+          <button type="button" onClick={() => navigate('/orders/my-orders')} className="px-4 py-2 bg-primary text-white rounded hover:bg-secondary">Orders: Receiving</button>
         </div>
       )}
 
-      <h2>Posts</h2>
-      <ul>
+      <h2 className="text-xl font-semibold mb-4">Posts</h2>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {listings.map(listing => (
           <li key={listing.id}>
             <Suspense fallback={<div>Loading...</div>}>

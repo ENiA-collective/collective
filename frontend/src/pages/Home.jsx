@@ -32,7 +32,7 @@ const HomePage = () => {
 
   return (
     <div className="home-page px-4 py-8">
-      <h1 className="text-2xl font-semibold mb-4">All Listings</h1>
+      {/* <h1 className="text-2xl font-semibold mb-4">All Listings</h1> */}
       <SearchBar handleSearch={handleSearch} />
       <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 mt-4">
         {listings.map(listing => (
