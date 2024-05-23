@@ -12,15 +12,15 @@ export default {
         },
         secondary: {
           DEFAULT: '#1aaf89;',
-          dark: '#1AAF89', //dont worry bout it
+          dark: '#1AAF89', 
         },
         background: {
           DEFAULT: '#EDEDED',
-          dark: '#24162', //dont worry bout it
+          dark: '#24162', 
         },
         text: {
           DEFAULT: '#241623',
-          dark: '#EDEDED', //dont worry bout it
+          dark: '#EDEDED', 
         },
       },
     },
