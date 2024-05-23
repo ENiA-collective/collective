@@ -33,26 +33,34 @@ import CurrentUserContext from '../contexts/CurrentUserContext';
     };
 
     return (
-      <>
+      <div className='flex flex-col min-w-96 items-center'>
         {/* would be really cool if it displayed actual order info but this is enough for now */}
-        <h1>Chat: Order #{order_id}</h1>
+        <h1 className='header'>Chat: Order #{order_id}</h1>
         {errorText && <p>{ errorText}</p>}
-        <div>
+        <div className="m-20 w-9/12">
           {messages.map(message => (
             <Message key={message.id} message={message} />
           ))}
         </div>
-        <div>
+        <div className='flex flex-col min-w-96 items-center justify-center'>
+          <label htmlFor='message-input'>Message:</label>
           <input
-            htmlFor="send-button"
+            id="message-input"
+            placeholder='Type something....'
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             maxLength={250}
+            className='input'
+            required
           />
-          <button id="send-button" onClick={handleSendMessage}>Send</button>
+          <button
+            id="send-button"
+            onClick={handleSendMessage}
+            className='bg-secondary text-text rounded-full font-semibold text-lg px-6 py-3 cursor-pointer transition-all duration-300 ease-in-out border border-black shadow-none hover:transform hover:translate-y-[-4px] hover:translate-x-[-2px] hover:shadow-[2px_5px_0_0_black] active:transform active:translate-y-[2px] active:translate-x-[1px] active:shadow-none'
+          >Send</button>
         </div>
-      </>
+      </div>
     );
   }
 
