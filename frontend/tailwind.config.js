@@ -23,9 +23,30 @@ export default {
           dark: '#EDEDED', //dont worry bout it
         },
       },
+      
     },
   },
+      
   plugins: [
     require('daisyui'),
   ],
+
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["light"],
+          primary: '#1f6356',
+          secondary: '#1aaf89',
+          "bg-primary": '#EDEDED',
+          "text-primary": '#241623',
+        },
+        dark: {
+          ...require("daisyui/src/theming/themes")["dark"],
+          //TBA
+        }
+      },
+    ],
+  },
+
 };
