@@ -57,10 +57,10 @@ const Listing = () => {
         <div className="flex space-x-4">
           {userObj.id === originalPoster.id ? (
             <>
-              <button type="button" onClick={() => navigate(`/orders/my-gifts`)} className="button-primary">
+              <button type="button" onClick={() => navigate(`/orders/my-gifts`)} className="bg-secondary text-white rounded-full font-semibold text-lg px-6 py-3 cursor-pointer transition-all duration-300 ease-in-out border border-black shadow-none hover:-translate-y-1 hover:-translate-x-0.5 hover:shadow-[2px_5px_0_0_black] active:translate-y-0.5 active:translate-x-0.25 active:shadow-none">
                 View Orders - {listing.order_count} Request(s) made!
               </button>
-              <button type="button" onClick={handleEdit} className="button-primary">
+              <button type="button" onClick={handleEdit} className="bg-secondary text-white rounded-full font-semibold text-lg px-6 py-3 cursor-pointer transition-all duration-300 ease-in-out border border-black shadow-none hover:-translate-y-1 hover:-translate-x-0.5 hover:shadow-[2px_5px_0_0_black] active:translate-y-0.5 active:translate-x-0.25 active:shadow-none">
                 Edit Listing
               </button>
               <DeleteListing listingId={listing.id} setErrorText={setErrorText} />

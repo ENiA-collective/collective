@@ -43,7 +43,10 @@ export default {
         },
         dark: {
           ...require("daisyui/src/theming/themes")["dark"],
-          //TBA
+          primary: '#1f6356',
+          secondary: '#1aaf89',
+          "bg-primary": '#EDEDED',
+          "text-primary": '#241623',
         }
       },
     ],
