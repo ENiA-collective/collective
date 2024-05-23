@@ -11,7 +11,7 @@ export default function SiteHeadingAndNav() {
   };
 
   return (
-    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-primary text-sm py-4 dark:bg-primary">
+    <header className="sticky top-0 z-50 flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-primary text-sm py-4 dark:bg-primary shadow-md">
       <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" aria-label="Global">
         <div className="flex items-center justify-between">
           <a className=" flex-none text-5xl font-semibold dark:text-secondary" href="/">Collective</a>
