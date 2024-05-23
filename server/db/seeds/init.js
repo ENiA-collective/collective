@@ -30,9 +30,9 @@ exports.seed = async (knex) => {
   await Listing.create("Cat hat", "Adorable knit cat hat! Available for pickup in Washington Heights.", 5, 40.7580, -73.9855, 'https://res.cloudinary.com/ddynov0dn/image/upload/wsek12m0nn3wgb4osqjo.png');
   await Listing.create("Milk Sweater", "Fun sweater for cat lovers - Pick up can be arranged near Industry City", 4, 40.7580, -73.9855, 'https://res.cloudinary.com/ddynov0dn/image/upload/vgztuuvfsf6tvyceatng.png');
 
-  await Listing.create("Summer Dress", "Light and breezy dress, perfect for hot days.", 2, 40.7128, -74.0060, "https://i.ebayimg.com/images/g/MrUAAOSwK1pi3JU7/s-l1600.webp");
-  await Listing.create("Cozy Sweater", "Soft and warm sweater, great for chilly evenings.", 3, 40.7580, -73.9855, "https://i.ebayimg.com/images/g/48cAAOSwr55mNkxV/s-l1600.webp");
-  await Listing.create("Denim Jeans", "Classic denim jeans, in good condition.", 3, 40.7128, -74.0060, "https://i.ebayimg.com/images/g/KS4AAOSwL5pmTS25/s-l1600.webp");
+  await Listing.create("Summer Dress", "Light and breezy dress, perfect for hot days.", 2, 40.7128, -74.0060, "https://res.cloudinary.com/ddynov0dn/image/upload/odvvzuyt5igj0pst7f6e.png");
+  await Listing.create("Cozy Sweater", "Soft and warm sweater, great for chilly evenings.", 3, 40.7580, -73.9855, "https://res.cloudinary.com/ddynov0dn/image/upload/bjszks6ijrl3g60kk3qu.png");
+  await Listing.create("Denim Jeans", "Classic denim jeans, in good condition.", 3, 40.7128, -74.0060, "https://res.cloudinary.com/ddynov0dn/image/upload/tk1rjpc0p1ycng8m7afu.png");
   await Listing.create("Formal Shirt", "Crisp formal shirt, suitable for office wear.", 4, 40.7306, -73.9352, "https://res.cloudinary.com/ddynov0dn/image/upload/kbvzjsqogj4oaahfrjzj.png");
   await Listing.create("Athletic Shorts", "Comfortable athletic shorts, perfect for workouts.", 5, 40.7419, -74.0048, "https://res.cloudinary.com/ddynov0dn/image/upload/eyrvb39ql86yueiw5pno.png");
   await Listing.create("Casual T-Shirt", "Casual t-shirt, great for everyday wear.", 6, 40.7128, -74.0060, "https://res.cloudinary.com/ddynov0dn/image/upload/i3pcorpxcp94jw0tsaff.png");
