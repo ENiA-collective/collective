@@ -22,10 +22,10 @@ const ListingCard = ({ listing }) => {
         className="w-full h-auto object-cover"
       />
       <div className="p-4">
-        <h2 className="text-lg font-semibold mb-2">{listing.title}</h2>
+        <h2 className="text-lg text-text font-semibold mb-2">{listing.title}</h2>
       </div>
       {isHovered && (
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-start p-4 text-white">
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-start p-4 text-text">
           <div className="flex items-center space-x-2">
             {/* <img src={listing.profile_picture} alt={listing.username} className="w-10 h-10 rounded-full" /> */}
             <span>{listing.username}</span>
