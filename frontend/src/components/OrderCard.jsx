@@ -43,7 +43,7 @@ const OrderCard = ({ order, receiving, setErrorText }) => {
 
   const getStatus = () => {
     if (listing.available) return 'Available'
-    if (order.fulfilled) return receiving ? 'Claimed by you!' : `Claimed by ${otherUser.username}`
+    if (order.fulfilled) return receiving ? 'Claimed by you!' : 'Claimed by another user.'
     return 'Unavailable'
   }
   
@@ -60,16 +60,36 @@ const OrderCard = ({ order, receiving, setErrorText }) => {
     setFulfillButtonText('Fulfilled!') // i'd like for this text to show up before the button vanishes, but i feel like we have more important details to focus on
   }
 
-  return <>
-    <h2>{listing.title}</h2>
-    <h3>Status: { getStatus() }</h3>
-    <img src={listing.image_src} />
-    <p>{truncateDescription(listing.description)}</p>
-    <p>Requested {receiving ? 'From:' : 'By:'} <UserLink user={otherUser} /></p>
-    <p>Requested At: {readableDate(order.created_at)}</p>
-    <button type="button" onClick={() => navigate(`/chat/${order.id}`)}>Chat</button>
-    {!receiving && listing.available && <button type="button" onClick={handleFullfill}>{fulfillButtonText}</button>}
-  </>
+  return <div
+  className="flex flex-col items-center relative bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transition-transform duration-200 hover:transform hover:translate-y-[-5px] mb-4 break-inside-avoid-column">
+    <div>
+      <div className="m-4">
+        <h2 className="text-xl font-bold">{listing.title}</h2>
+        <h3>Status: {getStatus()}</h3>
+      </div>
+      <img src={listing.image_src} />
+      <div className="mx-4">
+       <p className="font-italic my-4">{truncateDescription(listing.description)}</p>
+        <p>Requested {receiving ? 'From:' : 'By:'} <UserLink user={otherUser} /></p>
+        <p>Requested At: {readableDate(order.created_at)}</p>
+      </div>
+    </div>
+
+    <div>
+    <button
+      type="button"
+      onClick={() => navigate(`/chat/${order.id}`)}
+      className='m-4 bg-secondary text-text rounded-full font-semibold text-lg px-6 py-3 cursor-pointer transition-all duration-300 ease-in-out border border-black shadow-none hover:transform hover:translate-y-[-4px] hover:translate-x-[-2px] hover:shadow-[2px_5px_0_0_black] active:transform active:translate-y-[2px] active:translate-x-[1px] active:shadow-none'
+      >Chat</button>
+    {!receiving &&
+      listing.available &&
+      <button
+        type="button"
+        onClick={handleFullfill}
+        className='m-4 bg-secondary text-text rounded-full font-semibold text-lg px-6 py-3 cursor-pointer transition-all duration-300 ease-in-out border border-black shadow-none hover:transform hover:translate-y-[-4px] hover:translate-x-[-2px] hover:shadow-[2px_5px_0_0_black] active:transform active:translate-y-[2px] active:translate-x-[1px] active:shadow-none'
+        >{fulfillButtonText}</button>}
+      </div>
+  </div>
 }
 
 export default OrderCard

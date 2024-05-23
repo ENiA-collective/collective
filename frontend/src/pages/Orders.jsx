@@ -20,9 +20,9 @@ const Orders = ({receiving}) => {
   }, [])
 
   return <>
-    <h1>Orders: {receiving ? 'Receiving' : 'Giving'}</h1>
+    <h1 className="header">Orders: {receiving ? 'Receiving' : 'Giving'}</h1>
     {errorText && <p>{errorText}</p>}
-    <ul>
+    <ul className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 mt-4 px-4 py-8">
       { orders.map((order) => (
         <li key={order.id}>
           <OrderCard order={order} receiving={receiving} setErrorText={setErrorText} />

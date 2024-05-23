@@ -11,6 +11,7 @@
   --secondary: #1aaf89; /*light green */
   --primary: #1f6356; /*dark green */
   --background: #ededed; /*alabaster */
+  background-color: var(--background);
 }
 
 body {
