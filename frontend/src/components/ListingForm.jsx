@@ -18,9 +18,9 @@ const ListingForm = ({ handleSubmit, formData, setFormData }) => {
   };
 
   return (
-    <div className="form-wrapper max-w-xs bg-background overflow-hidden rounded-2xl text-text">
+    <div className="form-wrapper bg-background overflow-hidden rounded-2xl text-text max-w-screen-sm">
       <form onSubmit={handleSubmit} className="flex flex-col p-8 gap-4 text-center">
-        <div className="form-container">
+        <div className="form-container flex-col flex">
           <label htmlFor="title" className="sr-only">Title</label>
           <input
             type="text"
@@ -30,12 +30,12 @@ const ListingForm = ({ handleSubmit, formData, setFormData }) => {
             onChange={handleInputChange}
             required
             placeholder="Title"
-            className="input"
+            className="input "
             maxLength={50}
           />
         </div>
 
-        <div className="form-container">
+        <div className="form-container flex-col flex">
           <label htmlFor="description" className="sr-only">Item Description</label>
           <textarea
             id="description"

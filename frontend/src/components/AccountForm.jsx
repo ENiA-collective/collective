@@ -18,13 +18,14 @@ const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
   };
 
   return (
-    <div className="form-wrapper max-w-xs bg-background overflow-hidden rounded-2xl text-text">
+    <div className="form-wrapper max-w-lg bg-background overflow-hidden rounded-2xl text-text">
       <form
         onSubmit={handleSubmit}
         aria-labelledby="form-heading"
-        className="flex flex-col p-8 gap-4 text-center"
+        className="flex flex-col p-8 gap-4 text-center min-w-full items-center"
       >
-        <h2 id="form-heading" className="font-bold text-2xl">{newUser ? 'Create' : 'Edit' } Account</h2>
+        <h1 id="form-heading" className="font-bold text-2xl">{newUser ? 'Create' : 'Edit'} Account</h1>
+      
         <div className="form-container">
           <label htmlFor="username" className="sr-only">Username</label>
           <input
@@ -126,7 +127,8 @@ const AccountForm = ({ handleSubmit, formData, setFormData, newUser }) => {
           className="bg-secondary text-text rounded-full font-semibold text-lg px-6 py-3 cursor-pointer transition-all duration-300 ease-in-out border border-black shadow-none hover:-translate-y-1 hover:-translate-x-0.5 hover:shadow-[2px_5px_0_0_black] active:translate-y-0.5 active:translate-x-0.25 active:shadow-none"
         >
           Submit
-        </button>
+          </button>
+        
       </form>
     </div>
   );

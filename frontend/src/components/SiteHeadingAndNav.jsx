@@ -11,15 +11,15 @@ export default function SiteHeadingAndNav() {
   };
 
   return (
-    <header className="sticky top-0 z-50 flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-primary text-sm py-4 dark:bg-primary shadow-md">
+    <header className="sticky top-0 z-50 flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-primary text-sm py-4 shadow-md">
       <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" aria-label="Global">
         <div className="flex items-center justify-between">
-          <a className=" flex-none text-5xl font-semibold dark:text-secondary" href="/">Collective</a>
+          <a className=" flex-none text-5xl font-semibold text-secondary" href="/">Collective</a>
           <div className="sm:hidden">
             <button
               type="button"
               onClick={toggleNav}
-              className="p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-primary text-text shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-primary dark:text-secondary dark:hover:bg-white/10"
+              className="p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 text-text shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none bg-transparent border-primary text-secondary hover:bg-white/10"
               aria-controls="navbar-with-collapse"
               aria-label="Toggle navigation"
             >
